@@ -16,14 +16,5 @@ Paragraph
 [itch](https://kaiser359.itch.io/crescent-fighters)
 
 
-
-- Jacobe link: https://itch.io/game/accept-admin/4039830/12054483
-https://drive.google.com/drive/folders/1hCJvDAiD7FAdU20jBgq_o3D-eL_NM-YF?usp=drive_link
-
-- Audri link for drive
-https://drive.google.com/drive/folders/1tO87l2Ak4RKJkHI8awWM-TZg_PoM0rZU?usp=drive_link
-
-[LAN PARTY FOOD DO IT](https://docs.google.com/forms/d/e/1FAIpQLSfIaU677-_d5VBduLYnTDw3wfw3dsoDaIofRKRZxStxht7UYg/viewform)
-
 Derek was not here
 Or was he?
