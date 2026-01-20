@@ -1,12 +1,12 @@
-# LINKS ARE HERE
+# GEORGE GUYS!!!
 
-## Add phone number in project charter
+## all links are here
 
-###### Link for the drive is not working, author must give permision
+###### yum yum 
 
 Paragraph
 
-- Bullet point
+- Add phone num or a method to com
 - Bullet point 2
 
 [Pitch Deck](https://docs.google.com/presentation/d/14pwt_ieZJRp2xMWFiVkcRUFcU3MVS5XdUFLbcK1-A4Q/edit?usp=sharing)
