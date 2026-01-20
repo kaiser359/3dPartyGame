@@ -13,7 +13,7 @@ Paragraph
   [VGP](https://docs.google.com/document/d/1M4Rqk3NQvpsm7SezlaXGhdLTeMfOgSA56vKMkqq3qoM/edit?usp=sharing)
 [Project Charter](https://docs.google.com/document/d/1P5lc6Al5zDrcqhONWLYNRUd4CUnWNp_N1lZgko1TqdA/edit?usp=sharing)
 [Jira](https://mukilteo-team-cqya1673.atlassian.net/jira/core/projects/GTM/board?filter=&groupBy=status&atlOrigin=eyJpIjoiNjNjZDBjMzgzYTU5NDFlYWJiZWViZGI1YTc3YTI1NDAiLCJwIjoiaiJ9)
-[itch](https://kaiser359.itch.io/crescent-fighters)
+[itch](https://kaiser359.itch.io/george-guys)
 
 
 Derek was not here
