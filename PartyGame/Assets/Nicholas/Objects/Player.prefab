@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9139552388793472620}
   - component: {fileID: 4983814194444721174}
   - component: {fileID: 8198750743593189630}
-  - component: {fileID: 6659970207088741865}
+  - component: {fileID: 6623351175741377414}
   - component: {fileID: 5134096442110661098}
   m_Layer: 0
   m_Name: Player
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6659970207088741865
+--- !u!114 &6623351175741377414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6659970207088741865}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement_MAZE, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6659970207088741865}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement_MAZE, Assembly-CSharp
         m_MethodName: Escape
         m_Mode: 0
