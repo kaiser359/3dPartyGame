@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using Random = System.Random;
 
 public class PlayerMovement_MAZE : MonoBehaviour
 {
@@ -16,6 +18,10 @@ public class PlayerMovement_MAZE : MonoBehaviour
     private float sideInput;
     private float forwardInput;
 
+    // spawning
+    public SpawnPoints[] sp;
+    private Random rand = new Random();
+
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -29,6 +35,21 @@ public class PlayerMovement_MAZE : MonoBehaviour
         Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
         velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
+    }
+    private void Awake()
+    {
+        bool done = false;
+        while (done == false)
+        {
+            int spPosition = rand.Next(0, sp.Length-1);
+            if (sp[spPosition].taken == false)
+            {
+                tf.position = sp[spPosition].tf.position;
+                done = true;
+            }
+        }
+        
+        
     }
 
     public void Move(InputAction.CallbackContext ctx)
