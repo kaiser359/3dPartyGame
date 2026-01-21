@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WinStatement : MonoBehaviour
 {
-    public ScriptableObject partyPoints;
+    public PartyGameScore partyPoints;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -11,7 +11,7 @@ public class WinStatement : MonoBehaviour
     }
     public void playerScore(int score)
     {
-        
+        partyPoints.Player1score += score; 
     }
     // Update is called once per frame
     void Update()
