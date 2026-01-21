@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4983814194444721174}
   - component: {fileID: 8198750743593189630}
   - component: {fileID: 6623351175741377414}
-  - component: {fileID: 5134096442110661098}
+  - component: {fileID: 1715736085704946934}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -157,7 +157,17 @@ MonoBehaviour:
   tf: {fileID: 6120472529675141303}
   acceleration: 40
   topSpeed: 5
---- !u!114 &5134096442110661098
+  sp:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1715736085704946934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +194,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6623351175741377414}
         m_TargetAssemblyTypeName: PlayerMovement_MAZE, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -200,7 +210,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6623351175741377414}
         m_TargetAssemblyTypeName: PlayerMovement_MAZE, Assembly-CSharp
         m_MethodName: Escape
         m_Mode: 0
