@@ -18,8 +18,8 @@ public class musical_chairs_light : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lightbulb.intensity = Random.Range(49f, 51f);
-        lightbulb.spotAngle = Random.Range(99f, 101f);
+        lightbulb.intensity = Random.Range(295f, 305f);
+        lightbulb.spotAngle = Random.Range(49f, 51f);
 
         float x = Mathf.Sin(Time.time * speedx) * rotx;
         float z = Mathf.Cos(Time.time * speedz) * rotz;
