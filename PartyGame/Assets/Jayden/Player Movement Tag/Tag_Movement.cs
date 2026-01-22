@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using Random = System.Random;
-
-public class player_movement : MonoBehaviour
+public class Tag_Movement: MonoBehaviour
 {
+
     [Header("Player Components")]
     public Rigidbody rb;
     public Transform tf;
@@ -19,8 +19,6 @@ public class player_movement : MonoBehaviour
     private float forwardInput;
 
     // spawning
-    public SpawnPoints[] sp;
-    private Random rand = new Random();
 
     private void FixedUpdate()
     {
@@ -51,3 +49,4 @@ public class player_movement : MonoBehaviour
     }
 }
 
+}

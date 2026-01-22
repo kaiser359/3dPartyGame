@@ -30,7 +30,15 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = _isPaused ? 0f : 1f;
     }
 
-    public void OnApplicationQuit()
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    }
+
+
+
+    public void Quit()
     {
         Debug.Log("Quit!");
         Application.Quit();
