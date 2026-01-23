@@ -9,7 +9,7 @@ public class LobbyMovement : MonoBehaviour
     //i may not have a brain but i have ideas
     public SitOnchairTogetReady boo;
 
-    // (x = horizontal, y = vertical)
+    // x = horizontal, y = vertical
     private Vector2 _movement2 = Vector2.zero;
     public Vector3 lastMoveDirection;
     public float moveSpeed = 3f;

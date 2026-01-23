@@ -8,7 +8,7 @@ public class radio : MonoBehaviour
     public AudioSource current_song;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void playsong()
     {
         current_song.clip = music[Random.Range(0, music.Count)];
         current_song.Play();

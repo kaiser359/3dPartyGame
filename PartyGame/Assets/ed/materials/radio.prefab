@@ -217,7 +217,7 @@ AudioHighPassFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2500768452405015983}
   m_Enabled: 1
-  m_CutoffFrequency: 2000
+  m_CutoffFrequency: 10
   m_HighpassResonanceQ: 1
 --- !u!164 &2686405359436774520
 AudioReverbFilter:
@@ -251,7 +251,7 @@ AudioLowPassFilter:
   m_GameObject: {fileID: 2500768452405015983}
   m_Enabled: 1
   serializedVersion: 3
-  m_LowpassResonanceQ: 3
+  m_LowpassResonanceQ: 1
   lowpassLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
