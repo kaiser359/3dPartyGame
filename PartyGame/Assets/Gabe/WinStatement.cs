@@ -13,6 +13,19 @@ public class WinStatement : MonoBehaviour
     {
         partyPoints.Player1score += score; 
     }
+    public void player2Score(int score)
+    {
+        partyPoints.Player2score += score;
+    }
+    public void player3Score(int score)
+    {
+        partyPoints.Player3score += score;
+    }
+    public void player4Score(int score)
+    {
+        partyPoints.Player4score += score;
+    }
+
     // Update is called once per frame
     void Update()
     {
