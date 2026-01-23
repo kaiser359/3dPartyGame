@@ -36,7 +36,7 @@ public class LobbyMovement : MonoBehaviour
     
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
       
@@ -44,7 +44,7 @@ public class LobbyMovement : MonoBehaviour
         int i = (pi != null) ? pi.playerIndex : 0;
     }
 
-    // Update is called once per frame - apply movement here
+
     void Update()
     {
         if (_movement2 != Vector2.zero)
