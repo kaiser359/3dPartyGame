@@ -1,0 +1,54 @@
+{
+    "name": "BowLoose",
+    "maps": [
+        {
+            "name": "Loose",
+            "id": "08821e92-db11-41bc-97b5-d9f320450083",
+            "actions": [
+                {
+                    "name": "loosePrep",
+                    "type": "Button",
+                    "id": "366296d2-0bce-4d3d-bc91-bb6953acd20f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Loose",
+                    "type": "Button",
+                    "id": "c5ca2a70-3b5a-4fb4-8180-4ea34ac2d828",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d025c8a7-da82-42cc-bc43-69e18744834f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "loosePrep",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ea09365-68de-4861-8645-05e0d561d4f1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Loose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
