@@ -64,4 +64,9 @@ public class PlayerMovement_MAZE : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
+
+    public void die()
+    {
+        tf.position = new Vector3(0, 25, 0);
+    }
 }
