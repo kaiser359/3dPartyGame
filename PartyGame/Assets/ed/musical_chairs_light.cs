@@ -25,7 +25,6 @@ public class musical_chairs_light : MonoBehaviour
 
         float x = Mathf.Sin(Time.time * speedx) * rotx;
         float z = Mathf.Cos(Time.time * speedz) * rotz;
-        print(Time.time * rotx);
 
         transform.localEulerAngles = new Vector3(x, 0, z);
     }
