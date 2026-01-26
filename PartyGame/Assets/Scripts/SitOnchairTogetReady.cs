@@ -11,18 +11,17 @@ public class ChairData
     public GameObject player;
     public bool ready;
 
-    // runtime cached fields (not serialized)
-    [NonSerialized] public Rigidbody playerRb;
-    [NonSerialized] public PlayerMovement_MAZE movementScript;
-    [NonSerialized] public RigidbodyConstraints originalConstraints;
+    //[nonserialized]
+     public Rigidbody playerRb;
+     public LobbyMovement movementScript;
+     public RigidbodyConstraints originalConstraints;
 }
 
 public class SitOnchairTogetReady : MonoBehaviour
 {
     public List<ChairData> chairs = new List<ChairData>();
 
-    // assign this to the "jump" action (space) from the Input System in the inspector
-    public InputActionReference jumpAction;
+
 
     private void Start()
     {
@@ -32,7 +31,7 @@ public class SitOnchairTogetReady : MonoBehaviour
             var entry = chairs[i];
             if (entry == null || entry.player == null) continue;
             entry.playerRb = entry.player.GetComponent<Rigidbody>();
-            entry.movementScript = entry.player.GetComponent<PlayerMovement_MAZE>();
+            entry.movementScript = entry.player.GetComponent<LobbyMovement>();
             if (entry.playerRb != null)
                 entry.originalConstraints = entry.playerRb.constraints;
         }
@@ -57,7 +56,7 @@ public class SitOnchairTogetReady : MonoBehaviour
                 if (entry.player != null && entry.chair != null)
                 {
                     entry.player.transform.position = entry.chair.transform.position;
-                    // disable movement script
+                    // disable wont work just do later
                     if (entry.movementScript != null) entry.movementScript.enabled = false;
                     // stop physics motion and freeze rigidbody if present
                     if (entry.playerRb != null)
@@ -68,7 +67,7 @@ public class SitOnchairTogetReady : MonoBehaviour
                     }
                 }
 
-                Debug.Log("Player is ready: " + (entry.player ? entry.player.name : "unknown"));
+             
                 break;
             }
         }
@@ -91,7 +90,7 @@ public class SitOnchairTogetReady : MonoBehaviour
 
     private void Update()
     {
-
+     //   if(chairs.)
     }
 
 
@@ -108,12 +107,10 @@ public class SitOnchairTogetReady : MonoBehaviour
                 entry.ready = false;
                 UnlockEntry(entry);
 
-                // nudge player forward a bit so they are no longer exactly at the chair origin
                 if (entry.player != null && entry.chair != null)
                     entry.player.transform.position = entry.chair.transform.position + entry.chair.transform.forward * 1.0f;
 
-                Debug.Log("Player is no longer ready: " + (entry.player ? entry.player.name : "unknown"));
-                // break if only want to affect a single player per press
+             
                 break;
             }
         }
@@ -132,6 +129,7 @@ public class SitOnchairTogetReady : MonoBehaviour
             entry.playerRb.constraints = entry.originalConstraints;
             entry.playerRb.linearVelocity = Vector3.zero;
             entry.playerRb.angularVelocity = Vector3.zero;
+            entry.movementScript = entry.player.GetComponent<LobbyMovement>();
         }
     }
 }
