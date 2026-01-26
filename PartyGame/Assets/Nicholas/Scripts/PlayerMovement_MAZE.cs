@@ -56,8 +56,8 @@ public class PlayerMovement_MAZE : MonoBehaviour
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        sideInput = ctx.ReadValue<Vector3>().x;
-        forwardInput = ctx.ReadValue<Vector3>().z;
+        sideInput = ctx.ReadValue<Vector2>().x;
+        forwardInput = ctx.ReadValue<Vector2>().y;
     }
     public void Escape(InputAction.CallbackContext ctx)
     {
