@@ -33,12 +33,10 @@ public class LobbyMovement : MonoBehaviour
         {
             return;
         }
-
         while (boo.chairs.Count <= index)
             boo.chairs.Add(new ChairData());
         boo.chairs[index].player = this.gameObject;
     }
-
     void Start()
     {
         var pi = GetComponent<PlayerInput>();
@@ -50,10 +48,7 @@ public class LobbyMovement : MonoBehaviour
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
-
-      
     }
-
     void Update()
     {
 
@@ -62,10 +57,10 @@ public class LobbyMovement : MonoBehaviour
         float yaw = lookInput.x * currentSensitivity * scale;
         float pitch = lookInput.y * currentSensitivity * scale;
 
-        // Apply pitch to camera only so the capsule doesn't tilt.
+        //  doesn't tilt
         if (cameraTransform != null)
         {
-            xRotation -= pitch; // subtract so moving mouse up looks up
+            xRotation -= pitch; //looks up
             xRotation = Mathf.Clamp(xRotation, -80f, 80f);
             cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
