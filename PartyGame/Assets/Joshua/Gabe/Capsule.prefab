@@ -141,7 +141,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4013000408945088048}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4013000408945088048}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4013000408945088048}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: OnJumpPerformed
         m_Mode: 0

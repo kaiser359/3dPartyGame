@@ -50,7 +50,8 @@ public class SitOnchairTogetReady : MonoBehaviour
                 if (entry.player != null && entry.chair != null)
                 {
                     entry.player.transform.position = entry.chair.transform.position;
-                    
+                    entry.player.transform.rotation = entry.chair.transform.rotation;
+
                     if (entry.movementScript != null) entry.movementScript.enabled = false;
                     
                     if (entry.playerRb != null)
