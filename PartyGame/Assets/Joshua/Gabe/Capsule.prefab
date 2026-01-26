@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3927563412722851820}
   - component: {fileID: 4222224576356607914}
   - component: {fileID: 8755847221437669771}
-  - component: {fileID: 3879065564655911219}
   - component: {fileID: 1384298488476977469}
+  - component: {fileID: 4013000408945088048}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3879065564655911219}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3879065564655911219}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3879065564655911219}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyMovement, Assembly-CSharp
         m_MethodName: OnJumpPerformed
         m_Mode: 0
@@ -256,26 +256,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 746429490899797315}
---- !u!114 &3879065564655911219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376552167769891380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0b5b9b4893fae47959b8d6a16f78f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boo: {fileID: 0}
-  lastMoveDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 3
-  mouseSensitivity: 2
-  gamepadSensitivity: 100
-  mouseScale: 2
-  playerBody: {fileID: 8558247825053306455}
-  cameraTransform: {fileID: 4981086841643255727}
 --- !u!54 &1384298488476977469
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +283,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4013000408945088048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376552167769891380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6d5f6812be35c4abb237fab22595d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boo: {fileID: 0}
+  lastMoveDirection: {x: 0, y: 0, z: 0}
+  moveSpeed: 3
+  mouseSensitivity: 1
+  gamepadSensitivity: 2
+  mouseScale: 0.02
+  playerBody: {fileID: 8558247825053306455}
+  cameraTransform: {fileID: 4981086841643255727}
 --- !u!1 &4860731848438075333
 GameObject:
   m_ObjectHideFlags: 0

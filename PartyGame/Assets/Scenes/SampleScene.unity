@@ -7914,6 +7914,7 @@ GameObject:
   - component: {fileID: 778971795}
   - component: {fileID: 778971794}
   - component: {fileID: 778971797}
+  - component: {fileID: 778971798}
   m_Layer: 0
   m_Name: PlayerGetReady
   m_TagString: Untagged
@@ -7937,10 +7938,15 @@ MonoBehaviour:
   - chair: {fileID: 1616706161}
     player: {fileID: 0}
     ready: 0
+    playerRb: {fileID: 0}
+    movementScript: {fileID: 0}
+    originalConstraints: 0
   - chair: {fileID: 1616706161}
     player: {fileID: 0}
     ready: 0
-  jumpAction: {fileID: 0}
+    playerRb: {fileID: 0}
+    movementScript: {fileID: 0}
+    originalConstraints: 0
 --- !u!65 &778971795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7992,7 +7998,7 @@ MonoBehaviour:
   m_NotificationBehavior: 0
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8021,6 +8027,19 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &778971798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778971793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d4271ff664f2b43a10b6d9d075a5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerinput: {fileID: 778971797}
 --- !u!43 &781607734
 Mesh:
   m_ObjectHideFlags: 0

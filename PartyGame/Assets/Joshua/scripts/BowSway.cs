@@ -12,8 +12,8 @@ public class BowSway : MonoBehaviour
     [SerializeField] private float swayAngle = 2f;
     [SerializeField] private float swaySpeed = 1.5f;
     [SerializeField] private float smoothSpeed = 8f;
-    [SerializeField] private float inputThreshold = 0.02f;
-    [SerializeField][Range(0f, 2f)] private float inputBiasStrength = 0.6f;
+   
+   
     public Direction Sway;
 
     private Quaternion originalLocalRotation;
