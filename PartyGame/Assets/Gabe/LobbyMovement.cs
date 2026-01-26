@@ -56,8 +56,7 @@ public class LobbyMovement : MonoBehaviour
 
     void Update()
     {
-        // Choose scale: mouse delta is typically in frame so scale it down;
-        // gamepad/joystick  is an axis that should be frame-rate independent.
+
         float scale = usingMouse ? mouseScale : Time.deltaTime;
 
         float yaw = lookInput.x * currentSensitivity * scale;
