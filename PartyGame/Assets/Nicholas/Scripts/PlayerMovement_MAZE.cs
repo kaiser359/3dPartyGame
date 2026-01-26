@@ -12,6 +12,7 @@ public class PlayerMovement_MAZE : MonoBehaviour
     [Header("Player Settings")]
     public float acceleration;
     public float topSpeed;
+    public bool dead;
 
     // Player direction
     private Vector3 move;
@@ -41,10 +42,11 @@ public class PlayerMovement_MAZE : MonoBehaviour
         bool done = false;
         while (done == false)
         {
-            int spPosition = rand.Next(0, sp.Length-1);
+            int spPosition = rand.Next(0, sp.Length);
             if (sp[spPosition].taken == false)
             {
                 tf.position = sp[spPosition].tf.position;
+                sp[spPosition].taken = true;
                 done = true;
             }
         }
@@ -63,5 +65,11 @@ public class PlayerMovement_MAZE : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public void die()
+    {
+        tf.position = new Vector3(0, 25, 0);
+        dead = true;
     }
 }
