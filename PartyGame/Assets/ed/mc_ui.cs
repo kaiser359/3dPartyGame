@@ -27,4 +27,10 @@ public class mc_ui : MonoBehaviour
         duel_info.GetComponent<Animator>().SetTrigger("fade");
         yield return new WaitForSeconds(5.5f);
     }
+
+    public IEnumerator shoot_tutorial()
+    {
+        how2shoot.GetComponent<Animator>().SetTrigger("fade");
+        yield return new WaitForSeconds(5.5f);
+    }
 }

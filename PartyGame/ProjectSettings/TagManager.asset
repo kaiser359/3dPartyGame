@@ -6,6 +6,8 @@ TagManager:
   tags:
   - target
   - arrow
+  - chair
+  - bot
   layers:
   - Default
   - TransparentFX

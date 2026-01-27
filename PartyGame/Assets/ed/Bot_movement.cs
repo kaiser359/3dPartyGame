@@ -3,10 +3,11 @@ using UnityEngine.AI;
 
 public class Bot_movement : MonoBehaviour
 {
-    public Transform goal;
+    public GameObject goal;
     public NavMeshAgent agent;
     public bool forcing = true;
-
+    public bool is_sitting = false;
+    public bool in_duel = false;
     public GameObject target_chair;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,15 +24,18 @@ public class Bot_movement : MonoBehaviour
         }
         else
         {
-            GameObject[] chairs = GameObject.FindGameObjectsWithTag("chair");
-            foreach (GameObject chair in chairs)
+            if (in_duel == false)
             {
-                if (chair.GetComponent<musicial_chair>().taken == false)
+                GameObject[] chairs = GameObject.FindGameObjectsWithTag("chair");
+                foreach (GameObject chair in chairs)
                 {
-                    target_chair = chair.gameObject;
-                    agent.destination = target_chair.transform.position;
-                    print(target_chair);
-                    break;
+                    if (chair.GetComponent<musicial_chair>().taken == false)
+                    {
+                        target_chair = chair.gameObject;
+                        agent.destination = target_chair.transform.position;
+                        print(target_chair);
+                        break;
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@ public class thirdpersoncamera : MonoBehaviour
 
         xRotation -= mouseX;
         yRotation -= mouseY;
-        yRotation = Mathf.Clamp(yRotation, -90f, 90f); // makes it so you can look past legs and head
+        yRotation = Mathf.Clamp(yRotation, -20f, 90f);
 
         pivotx.transform.localRotation = Quaternion.Euler(yRotation, -xRotation, 0f);
     }
