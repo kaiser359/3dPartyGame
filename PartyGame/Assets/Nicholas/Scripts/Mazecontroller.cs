@@ -11,6 +11,12 @@ public class Mazecontroller : MonoBehaviour
 
     private void Awake()
     {
+        // loop for filling out the array
+        for(int i = 0; i < pmM.Length; i++)
+        {
+            pmM[i] = GetComponent<PlayerMovement_MAZE>();
+        }
+        // loop for placing players in map at random*
         for (int i = 0; i < pmM.Length; i++)
         {
             bool done = false;
