@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using Random = System.Random;
 
 public class Curtis : MonoBehaviour
 {
     public NavMeshAgent nma;
-    public PlayerMovement_MAZE[] targets;
+    public List<PlayerMovement_MAZE> targets;
     private Random rand = new Random();
     public float elapsedTime;
     [SerializeField] BoxCollider bc;
@@ -23,7 +25,7 @@ public class Curtis : MonoBehaviour
             bool done = false;
             while (done == false)
             {
-                int player = rand.Next(0,targets.Length);
+                int player = rand.Next(0,targets.Count);
                 if (targets[0].dead && targets[1].dead && targets[2].dead && targets[3].dead)
                 {
                     Destroy(gameObject);
@@ -58,5 +60,10 @@ public class Curtis : MonoBehaviour
     private void Target(Transform t)
     {
         nma.SetDestination(t.position);
+    }
+
+    public void Join(PlayerInput player)
+    {
+        targets.Add(player.GetComponent<PlayerMovement_MAZE>());
     }
 }

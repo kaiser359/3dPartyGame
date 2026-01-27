@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 316031213923514980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -158,16 +158,6 @@ MonoBehaviour:
   acceleration: 40
   topSpeed: 5
   dead: 0
-  sp:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1715736085704946934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +215,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a893593b-2901-4b75-b9d0-a7a02664b0f1
     m_ActionName: 'Player/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8896843682490058805}
+        m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1b860da1-3517-4613-b7b2-b0acb1234e7a
+    m_ActionName: 'Player/Look[/Mouse/delta,/XInputControllerWindows/rightStick]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -380,4 +386,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bc58c6c57cf6141a53ea718dd04b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 10
+  sensitivity: 0.5
+  tf: {fileID: 1532378298065166258}
