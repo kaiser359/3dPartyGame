@@ -11,10 +11,10 @@ public class LobbyMovement : MonoBehaviour
 
     [SerializeField] float mouseSensitivity = 1f;
     [SerializeField] float gamepadSensitivity = 2f;
-    [SerializeField] float mouseScale = 0.02f; // small scale to reduce mouse sensitivity
+    [SerializeField] float mouseScale = 0.02f; 
 
-    public Transform playerBody;      // the capsule (yaw applied here)
-    public Transform cameraTransform; // the camera (pitch applied here)
+    public Transform playerBody;      
+    public Transform cameraTransform;
 
     private Vector2 lookInput;
     private float xRotation = 0f;
@@ -33,12 +33,10 @@ public class LobbyMovement : MonoBehaviour
         {
             return;
         }
-
         while (boo.chairs.Count <= index)
             boo.chairs.Add(new ChairData());
         boo.chairs[index].player = this.gameObject;
     }
-
     void Start()
     {
         var pi = GetComponent<PlayerInput>();
@@ -50,33 +48,24 @@ public class LobbyMovement : MonoBehaviour
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
-
-        // Ensure camera is a child of playerBody so pitch is local to camera.
-        // (If it's not, assign camera as child in the inspector or hierarchy.)
     }
-
     void Update()
     {
-        // Choose scale: mouse delta is typically in pixels/frame so scale it down;
-        // gamepad/joystick (stick) is an axis that should be frame-rate independent.
+
         float scale = usingMouse ? mouseScale : Time.deltaTime;
 
         float yaw = lookInput.x * currentSensitivity * scale;
         float pitch = lookInput.y * currentSensitivity * scale;
 
-        // Apply pitch to camera only so the capsule doesn't tilt.
+        //  doesn't tilt
         if (cameraTransform != null)
         {
-            xRotation -= pitch; // subtract so moving mouse up looks up
+            xRotation -= pitch; //looks up
             xRotation = Mathf.Clamp(xRotation, -80f, 80f);
             cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
-
-        // Apply yaw to the player body (capsule) so the player turns left/right
         if (playerBody != null)
             playerBody.Rotate(Vector3.up * yaw);
-
-        // Movement: translate the player in local space so forward is where the player is facing
         if (_movement2 != Vector2.zero)
         {
             Vector3 localMove = new Vector3(_movement2.x, 0f, _movement2.y);
@@ -86,13 +75,11 @@ public class LobbyMovement : MonoBehaviour
             lastMoveDirection = worldMove.normalized;
         }
     }
-
     public void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && boo != null)
             boo.UnsetFirstReadyEntry();
     }
-
     public void Move(InputAction.CallbackContext ctx)
     {
         Vector2 input = ctx.ReadValue<Vector2>();
@@ -101,19 +88,17 @@ public class LobbyMovement : MonoBehaviour
         {
             lastMoveDirection = new Vector3(input.x, 0f, input.y).normalized;
         }
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
+    }public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
 
         var device = context.control?.device;
-        if (device is UnityEngine.InputSystem.Mouse)
+        if (device is Mouse)
         {
             currentSensitivity = mouseSensitivity;
             usingMouse = true;
         }
-        else if (device is UnityEngine.InputSystem.Gamepad)
+        else if (device is Gamepad)
         {
             currentSensitivity = gamepadSensitivity;
             usingMouse = false;
