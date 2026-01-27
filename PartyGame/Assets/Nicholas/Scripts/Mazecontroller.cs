@@ -11,7 +11,13 @@ public class Mazecontroller : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < sp.Length; i++)
+        // loop for filling out the array
+        for(int i = 0; i < pmM.Length; i++)
+        {
+            pmM[i] = GetComponent<PlayerMovement_MAZE>();
+        }
+        // loop for placing players in map at random*
+        for (int i = 0; i < pmM.Length; i++)
         {
             bool done = false;
             while (done == false)
@@ -19,7 +25,7 @@ public class Mazecontroller : MonoBehaviour
                 int spPosition = rand.Next(0, sp.Length);
                 if (sp[spPosition].taken == false)
                 {
-                    pmM[0].tf.position = sp[spPosition].tf.position;
+                    pmM[i].tf.position = sp[spPosition].tf.position;
                     sp[spPosition].taken = true;
                     done = true;
                 }

@@ -158,16 +158,6 @@ MonoBehaviour:
   acceleration: 40
   topSpeed: 5
   dead: 0
-  sp:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1715736085704946934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,3 +371,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 10
+  tf: {fileID: 1532378298065166258}
