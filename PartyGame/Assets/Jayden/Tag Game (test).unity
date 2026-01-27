@@ -543,12 +543,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 216762986212500443, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 970147ae5ad6a8844913615233536bca, type: 2}
+    - target: {fileID: 216762986212500443, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 1753618f60be5df429f33613a459ef5d, type: 2}
     - target: {fileID: 1627044906021803881, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1809873698776970474, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -580,7 +584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1929902325264437794, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929902325264437794, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4309907625244023576, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2889,9 +2897,9 @@ GameObject:
   - component: {fileID: 1965627336}
   - component: {fileID: 1965627340}
   - component: {fileID: 1965627335}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2970,6 +2978,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
