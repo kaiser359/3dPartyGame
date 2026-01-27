@@ -157,6 +157,7 @@ MonoBehaviour:
   tf: {fileID: 6120472529675141303}
   acceleration: 40
   topSpeed: 5
+  dead: 0
   sp:
   - {fileID: 0}
   - {fileID: 0}
@@ -207,7 +208,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 45bb5a7b-ea12-42a0-ad1d-d066c45d3ecc
-    m_ActionName: 'Player/Move[/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s]'
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6623351175741377414}
@@ -223,12 +224,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: a893593b-2901-4b75-b9d0-a7a02664b0f1
-    m_ActionName: 'Player/Escape[/Keyboard/escape]'
+    m_ActionName: 'Player/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 8089698188294852352}
 --- !u!1 &716494691411889714
 GameObject:
   m_ObjectHideFlags: 0
