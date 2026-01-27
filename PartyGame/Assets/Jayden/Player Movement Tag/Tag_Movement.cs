@@ -27,6 +27,11 @@ public class Tag_Movement : MonoBehaviour
     private float sideInput;
     private float forwardInput;
 
+    [Header("Materials Settings")]
+    //Materials
+    public Material taggerMaterial;
+    public Material runnerMaterial;
+
     // Dash state
     private bool canDash = true;
     private bool isDashing = false;
@@ -35,9 +40,6 @@ public class Tag_Movement : MonoBehaviour
     {
         float speedMultiplier = isTagger ? taggerSpeedMultiplier : 1f;
 
-        // Build movement vector from inputs relative to transform
-        move = tf.forward * forwardInput + tf.right * sideInput;
-
         // Prevent diagonal inputs from exceeding magnitude 1
         if (move.sqrMagnitude > 1f)
             move = move.normalized;
@@ -45,27 +47,39 @@ public class Tag_Movement : MonoBehaviour
         // While dashing, skip regular acceleration to preserve dash impulse feel
         if (!isDashing)
         {
-            Vector3 newVelocity = new Vector3(move.x * acceleration * speedMultiplier, 0f, move.z * acceleration * speedMultiplier);
-            rb.AddForce(newVelocity, ForceMode.Acceleration);
+            Vector3 accelerationForce = new(move.x * acceleration * speedMultiplier, 0f, move.z * acceleration * speedMultiplier);
+            rb.AddForce(accelerationForce, ForceMode.Acceleration);
         }
 
-        // Clamp horizontal velocity
-        Vector3 horizontal = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        horizontal = Vector3.ClampMagnitude(horizontal, topSpeed * speedMultiplier);
-        rb.linearVelocity = new Vector3(horizontal.x, rb.linearVelocity.y, horizontal.z);
+        if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
+        {
+            Mathf.Sqrt(forwardInput);
+            Mathf.Sqrt(sideInput);
+        }
+        move = tf.forward * forwardInput + tf.right * sideInput;
+        Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
+        rb.AddForce(newVelocity);
+        Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
+        velocity.y = rb.linearVelocity.y;
+        rb.linearVelocity = velocity;
     }
 
     // Move action expects a Vector2 (e.g. from WASD or left stick)
     public void Move(InputAction.CallbackContext ctx)
     {
         Vector2 v = ctx.ReadValue<Vector2>();
-        sideInput = v.x;
-        forwardInput = v.y;
+        print(v);
+        sideInput = ctx.ReadValue<Vector2>().x;
+        forwardInput = ctx.ReadValue<Vector2>().y;
     }
 
     // Dash action (bind a button to this)
     public void Dash(InputAction.CallbackContext ctx)
     {
+        // Only allow the current tagger to dash
+        if (!isTagger)
+            return;
+
         if (ctx.performed && canDash)
         {
             StartCoroutine(DashRoutine());
@@ -119,6 +133,16 @@ public class Tag_Movement : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public void Material()
+    {
+        var renderer = GetComponent<Renderer>();
+        if (renderer == null)
+            return;
+
+        // Use material at runtime to ensure instance when needed
+        renderer.material = isTagger ? taggerMaterial : runnerMaterial;
     }
 }
 
