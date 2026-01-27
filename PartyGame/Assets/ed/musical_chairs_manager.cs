@@ -1,8 +1,7 @@
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+using UnityEngine.AI;
 public class musical_chairs_manager : MonoBehaviour
 {
 
@@ -12,6 +11,9 @@ public class musical_chairs_manager : MonoBehaviour
     public mc_ui ui;
     public radio radio;
     public musical_chairs_light lightbulb;
+    public GameObject player;
+
+    public List<Bot_movement> agents = new List<Bot_movement>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +25,13 @@ public class musical_chairs_manager : MonoBehaviour
             GameObject new_bot = Instantiate(bot, mover.transform.position, Quaternion.identity);
             new_bot.transform.SetParent(null);
             new_bot.GetComponent<Bot_movement>().goal = mover.transform;
+            agents.Add(new_bot.GetComponent<Bot_movement>());
         }
+        GameObject new_player_force_mover = Instantiate(force_mover);
+        GameObject player_mover = new_player_force_mover.GetComponent<forcemove>().mover;
+        new_player_force_mover.transform.Rotate(0, Random.Range(0, 360), 0);
+        player.GetComponent<Bot_movement>().goal = player_mover.transform;
+        agents.Add(player.GetComponent<Bot_movement>());
         StartCoroutine(tutorial());
     }
 
@@ -32,9 +40,19 @@ public class musical_chairs_manager : MonoBehaviour
         yield return StartCoroutine(ui.tutorial());
         lightbulb.lightson();
         yield return new WaitForSeconds(1f);
-        radio.playsong();
+        StartCoroutine(round());
     }
-        // Update is called once per frame
+
+    public IEnumerator round()
+    {
+        radio.playsong();
+        yield return new WaitForSeconds(Random.Range(4f, 15f));
+        radio.stopsong();
+        foreach (Bot_movement movement in agents)
+        {
+            movement.forcing = false;
+        }
+    }
     void Update()
     {
         

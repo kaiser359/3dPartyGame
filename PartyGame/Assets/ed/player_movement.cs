@@ -18,10 +18,6 @@ public class player_movement : MonoBehaviour
     private float sideInput;
     private float forwardInput;
 
-    // spawning
-    public SpawnPoints[] sp;
-    private Random rand = new Random();
-
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -39,8 +35,8 @@ public class player_movement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        sideInput = ctx.ReadValue<Vector3>().x;
-        forwardInput = ctx.ReadValue<Vector3>().z;
+        sideInput = ctx.ReadValue<Vector2>().x;
+        forwardInput = ctx.ReadValue<Vector2>().y;
     }
     public void Escape(InputAction.CallbackContext ctx)
     {

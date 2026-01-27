@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4635034319234834817}
   - component: {fileID: 2816157725556397540}
   - component: {fileID: 603146861765514947}
-  - component: {fileID: 392655536502797982}
   m_Layer: 0
   m_Name: BACKBOARD
   m_TagString: Untagged
@@ -87,29 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &392655536502797982
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542960991958763263}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &711570354135651900
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +97,8 @@ GameObject:
   - component: {fileID: 3413798660354227763}
   - component: {fileID: 7853257808154041931}
   - component: {fileID: 7936873020568513444}
-  - component: {fileID: 8444066926701114633}
+  - component: {fileID: 274483129033376784}
+  - component: {fileID: 2961379189532541400}
   m_Layer: 0
   m_Name: 20 POINTS
   m_TagString: Untagged
@@ -138,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 711570354135651900}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.135, y: 1.479, z: 1.8607001}
+  m_LocalPosition: {x: 2.135, y: 1.487, z: 1.8607001}
   m_LocalScale: {x: 0.8, y: 0.01, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,8 +174,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8444066926701114633
-CapsuleCollider:
+--- !u!114 &274483129033376784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711570354135651900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29395542da95b542bb04605b1160db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsToAdd: 20
+  destroyArrowOnHit: 1
+  scoreKey: Score
+--- !u!64 &2961379189532541400
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -215,11 +207,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1345272020857237465
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +222,8 @@ GameObject:
   - component: {fileID: 1333110980187671331}
   - component: {fileID: 6687688218109416487}
   - component: {fileID: 8332507817751500210}
-  - component: {fileID: 5935301638988566564}
+  - component: {fileID: 5031527466282392959}
+  - component: {fileID: 7348156867218605635}
   m_Layer: 0
   m_Name: 10 POINTS
   m_TagString: Untagged
@@ -307,8 +299,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5935301638988566564
-CapsuleCollider:
+--- !u!114 &5031527466282392959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345272020857237465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29395542da95b542bb04605b1160db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsToAdd: 10
+  destroyArrowOnHit: 1
+  scoreKey: Score
+--- !u!64 &7348156867218605635
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -325,11 +332,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1526805518913636197
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,9 +345,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 500641565868323992}
+  - component: {fileID: 3418874602447013292}
   m_Layer: 0
   m_Name: target
-  m_TagString: Untagged
+  m_TagString: target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,8 +363,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.429, y: 0.31, z: -1.81}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1333110980187671331}
   - {fileID: 3413798660354227763}
@@ -367,6 +374,21 @@ Transform:
   - {fileID: 7589335644440423359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &3418874602447013292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526805518913636197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99d668e729c8f946ad0d3815e6a32cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreKey: Score
+  current: 0
+  scoreText: {fileID: 0}
 --- !u!1 &2399522029698890934
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +400,8 @@ GameObject:
   - component: {fileID: 3430963360864047323}
   - component: {fileID: 7935638570388329666}
   - component: {fileID: 7164690734285284541}
-  - component: {fileID: 6356204976657669631}
+  - component: {fileID: 993316922448700675}
+  - component: {fileID: 7348323629133468759}
   m_Layer: 0
   m_Name: 100 POINTS
   m_TagString: Untagged
@@ -395,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 2399522029698890934}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.135, y: 1.489, z: 1.8607001}
+  m_LocalPosition: {x: 2.135, y: 1.548, z: 1.8607001}
   m_LocalScale: {x: 0.2, y: 0.01, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,8 +477,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6356204976657669631
-CapsuleCollider:
+--- !u!114 &993316922448700675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399522029698890934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29395542da95b542bb04605b1160db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsToAdd: 100
+  destroyArrowOnHit: 1
+  scoreKey: Score
+--- !u!64 &7348323629133468759
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -472,11 +510,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2847014232416820988
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +745,8 @@ GameObject:
   - component: {fileID: 1907029198474796720}
   - component: {fileID: 393967272505669256}
   - component: {fileID: 110244290616423111}
-  - component: {fileID: 2036251535337550541}
+  - component: {fileID: 965950062861921950}
+  - component: {fileID: 1573409156982069084}
   m_Layer: 0
   m_Name: 80 POINTS
   m_TagString: Untagged
@@ -725,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 5111453884579734998}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.135, y: 1.485, z: 1.8607001}
+  m_LocalPosition: {x: 2.135, y: 1.526, z: 1.8607001}
   m_LocalScale: {x: 0.4, y: 0.01, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -784,8 +822,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2036251535337550541
-CapsuleCollider:
+--- !u!114 &965950062861921950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111453884579734998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29395542da95b542bb04605b1160db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsToAdd: 80
+  destroyArrowOnHit: 1
+  scoreKey: Score
+--- !u!64 &1573409156982069084
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -802,11 +855,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6240029317657833355
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +980,8 @@ GameObject:
   - component: {fileID: 6359890481613141006}
   - component: {fileID: 7031272252161799689}
   - component: {fileID: 7157286677883814448}
-  - component: {fileID: 5149066591573627985}
+  - component: {fileID: 4259876321657696838}
+  - component: {fileID: 909179975096068710}
   m_Layer: 0
   m_Name: 50 POINTS
   m_TagString: Untagged
@@ -945,7 +998,7 @@ Transform:
   m_GameObject: {fileID: 6682069780107847735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.135, y: 1.482, z: 1.8607001}
+  m_LocalPosition: {x: 2.135, y: 1.507, z: 1.8607001}
   m_LocalScale: {x: 0.6, y: 0.01, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1004,8 +1057,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5149066591573627985
-CapsuleCollider:
+--- !u!114 &4259876321657696838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682069780107847735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29395542da95b542bb04605b1160db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsToAdd: 50
+  destroyArrowOnHit: 1
+  scoreKey: Score
+--- !u!64 &909179975096068710
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1022,11 +1090,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6937350190209999333
 GameObject:
   m_ObjectHideFlags: 0

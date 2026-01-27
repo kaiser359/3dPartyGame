@@ -39,8 +39,8 @@
                 {
                     "name": "",
                     "id": "4ea09365-68de-4861-8645-05e0d561d4f1",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "MultiTap",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Loose",

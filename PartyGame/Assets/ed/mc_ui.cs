@@ -23,8 +23,8 @@ public class mc_ui : MonoBehaviour
     public IEnumerator tutorial()
     {
         seat_text.GetComponent<Animator>().SetTrigger("fade");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         duel_info.GetComponent<Animator>().SetTrigger("fade");
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(5.5f);
     }
 }

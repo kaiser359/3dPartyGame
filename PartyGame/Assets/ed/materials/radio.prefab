@@ -76,12 +76,6 @@ PrefabInstance:
       addedObject: {fileID: 7137373121623242479}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1debe1e2c3b481b47a861a891c1dc089, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5430763804698219768}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1debe1e2c3b481b47a861a891c1dc089, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2686405359436774520}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1debe1e2c3b481b47a861a891c1dc089, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6305420320747435395}
   m_SourcePrefab: {fileID: 100100000, guid: 1debe1e2c3b481b47a861a891c1dc089, type: 3}
 --- !u!1 &2500768452405015983 stripped
@@ -209,39 +203,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!165 &5430763804698219768
-AudioHighPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2500768452405015983}
-  m_Enabled: 1
-  m_CutoffFrequency: 10
-  m_HighpassResonanceQ: 1
---- !u!164 &2686405359436774520
-AudioReverbFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2500768452405015983}
-  m_Enabled: 1
-  m_DryLevel: 0
-  m_Room: -1000
-  m_RoomHF: 0
-  m_DecayTime: 8.39
-  m_DecayHFRatio: 1.39
-  m_ReflectionsLevel: -115
-  m_ReverbLevel: 985
-  m_ReverbDelay: 0.03
-  m_Diffusion: 100
-  m_Density: 100
-  m_HFReference: 5000
-  m_RoomLF: 0
-  m_LFReference: 250
-  m_ReflectionsDelay: 0
-  m_ReverbPreset: 24
 --- !u!169 &6305420320747435395
 AudioLowPassFilter:
   m_ObjectHideFlags: 0
