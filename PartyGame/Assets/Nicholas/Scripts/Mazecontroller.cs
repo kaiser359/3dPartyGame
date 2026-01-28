@@ -11,12 +11,10 @@ public class Mazecontroller : MonoBehaviour
     // spawning
     public SpawnPoints[] sp;
     private Random rand = new Random();
-
     // players
     public List<PlayerMovement_MAZE> pmM;
-    
 
-    private void Awake()
+    private void Start()
     {
         // loop for placing players in map at random*
         for (int i = 0; i < pmM.Count; i++)
@@ -25,7 +23,6 @@ public class Mazecontroller : MonoBehaviour
             while (done == false)
             {
                 int spPosition = rand.Next(0, sp.Length);
-                Debug.Log(spPosition);
                 if (sp[spPosition].taken == false)
                 {
                     pmM[i].tf.position = sp[spPosition].tf.position;
@@ -34,11 +31,24 @@ public class Mazecontroller : MonoBehaviour
                 }
             }
         }
-        Debug.Log("test");
+        // undoing all the taken positions for respawning
+        for(int i = 0; i < sp.Length; i++)
+        {
+            sp[i].taken = false;
+        }
     }
     public void Join(PlayerInput player)
     {
         pmM.Add(player.GetComponent<PlayerMovement_MAZE>());
+    }
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerMovement_MAZE pmM = collision.GetComponent<PlayerMovement_MAZE>();
+
+        }
     }
 }
 

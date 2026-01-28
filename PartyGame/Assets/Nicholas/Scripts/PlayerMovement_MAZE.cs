@@ -8,17 +8,26 @@ public class PlayerMovement_MAZE : MonoBehaviour
     [Header("Player Components")]
     public Rigidbody rb;
     public Transform tf;
+    public Mazecontroller mc;
 
     [Header("Player Settings")]
     public float acceleration;
     public float topSpeed;
-    public bool dead;
 
     // Player direction
     private Vector3 move;
     private float sideInput;
     private float forwardInput;
 
+    private Random rand = new Random();
+    private PlayerInput play;
+
+    public bool done;
+    private void Awake()
+    {
+        mc = Component.FindAnyObjectByType<Mazecontroller>();
+        play = GetComponent<PlayerInput>();
+    }
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -49,7 +58,11 @@ public class PlayerMovement_MAZE : MonoBehaviour
 
     public void die()
     {
-        tf.position = new Vector3(0, 25, 0);
-        dead = true;
+        int spPosition = rand.Next(0, mc.sp.Length);
+        tf.position = mc.sp[spPosition].tf.position;
+    }
+    public int getPlayerIndex()
+    {
+        return play.playerIndex;
     }
 }
