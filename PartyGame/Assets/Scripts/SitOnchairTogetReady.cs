@@ -95,7 +95,7 @@ public class SitOnchairTogetReady : MonoBehaviour
         }
         if (chairs[1].movementScript == null)
         {
-            chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
+      //      chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
         }
 
         for (int i = 0; i < chairs.Count; i++)
@@ -153,5 +153,6 @@ public class SitOnchairTogetReady : MonoBehaviour
     protected virtual void StartMinigame()
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
+        LevelUpSystem.Instance.ShowVoting();
     }
 }
