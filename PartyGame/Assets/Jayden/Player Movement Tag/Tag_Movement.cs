@@ -27,14 +27,23 @@ public class Tag_Movement : MonoBehaviour
     private float sideInput;
     private float forwardInput;
 
-    [Header("Materials Settings")]
+    [Header("Tagger Materials Settings")]
     //Materials
     public Material taggerMaterial;
+    public Material taggerMaterial2;
+
+    [Header("Player Materials Settings")]
     public Material runnerMaterial;
 
     // Dash state
     private bool canDash = true;
     private bool isDashing = false;
+
+    private void Start()
+    {
+        // Ensure the correct material is applied at start based on role
+        Material();
+    }
 
     private void FixedUpdate()
     {
@@ -124,6 +133,11 @@ public class Tag_Movement : MonoBehaviour
     {
         other.isTagger = true;
         isTagger = false;
+
+        // Update visuals immediately on both players
+        other.Material();
+        Material();
+
         Debug.Log($"{gameObject.name} tagged {other.gameObject.name}. Tag transferred.");
     }
 
@@ -141,8 +155,28 @@ public class Tag_Movement : MonoBehaviour
         if (renderer == null)
             return;
 
-        // Use material at runtime to ensure instance when needed
-        renderer.material = isTagger ? taggerMaterial : runnerMaterial;
+        if (isTagger)
+        {
+            // If both tagger materials are assigned choose one randomly for variety.
+            if (taggerMaterial != null && taggerMaterial2 != null)
+            {
+                renderer.material = (UnityEngine.Random.value > 0.5f) ? taggerMaterial2 : taggerMaterial;
+            }
+            else if (taggerMaterial2 != null)
+            {
+                renderer.material = taggerMaterial2;
+            }
+            else
+            {
+                renderer.material = taggerMaterial;
+            }
+        }
+        else
+        {
+            // Runner material for non-taggers
+            if (runnerMaterial != null)
+                renderer.material = runnerMaterial;
+        }
     }
 }
 
