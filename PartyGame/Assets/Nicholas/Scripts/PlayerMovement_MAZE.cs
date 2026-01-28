@@ -9,6 +9,8 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public Rigidbody rb;
     public Transform tf;
     public Mazecontroller mc;
+    public WinStatement ws;
+    
 
     [Header("Player Settings")]
     public float acceleration;
@@ -25,8 +27,8 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public bool done;
     private void Awake()
     {
-        mc = Component.FindAnyObjectByType<Mazecontroller>();
-        play = GetComponent<PlayerInput>();
+        mc = FindAnyObjectByType<Mazecontroller>();
+        ws = FindAnyObjectByType<WinStatement>();
     }
     private void FixedUpdate()
     {
@@ -56,6 +58,13 @@ public class PlayerMovement_MAZE : MonoBehaviour
         }
     }
 
+    public void score()
+    {
+        if(play.playerIndex == 0)
+        {
+
+        }
+    }
     public void die()
     {
         int spPosition = rand.Next(0, mc.sp.Length);
@@ -64,5 +73,24 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public int getPlayerIndex()
     {
         return play.playerIndex;
+    }
+    public void scoreHelp(int points)
+    {
+        if(play.playerIndex == 0)
+        {
+            ws.playerScore(points);
+        }
+        else if (play.playerIndex == 1)
+        {
+            ws.player2Score(points);
+        }
+        else if (play.playerIndex == 2)
+        {
+            ws.player3Score(points);
+        }
+        else if (play.playerIndex == 3)
+        {
+            ws.player4Score(points);
+        }
     }
 }

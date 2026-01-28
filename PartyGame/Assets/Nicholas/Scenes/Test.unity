@@ -10348,6 +10348,7 @@ GameObject:
   - component: {fileID: 1106757201}
   - component: {fileID: 1106757200}
   - component: {fileID: 1106757202}
+  - component: {fileID: 1106757203}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -10432,7 +10433,7 @@ Transform:
   m_GameObject: {fileID: 1106757199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2030687, y: -22.192266, z: -4.3986783}
+  m_LocalPosition: {x: 0, y: 5, z: 38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10451,6 +10452,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerinput: {fileID: 1106757200}
+--- !u!65 &1106757203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106757199}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 10, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1126552244
 GameObject:
   m_ObjectHideFlags: 0
@@ -20648,6 +20670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022676300}
   - component: {fileID: 2022676299}
+  - component: {fileID: 2022676301}
   m_Layer: 0
   m_Name: MazeController
   m_TagString: Untagged
@@ -20693,6 +20716,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022676301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022676298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ab8c4e68de0584e96c70abd8f694e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partyPoints: {fileID: 11400000, guid: b4ed468a8ab0daf4890d874b41332ff4, type: 2}
 --- !u!1 &2037203951
 GameObject:
   m_ObjectHideFlags: 0

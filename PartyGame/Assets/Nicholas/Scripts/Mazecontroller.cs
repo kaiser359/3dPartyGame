@@ -13,9 +13,18 @@ public class Mazecontroller : MonoBehaviour
     private Random rand = new Random();
     // players
     public List<PlayerMovement_MAZE> pmM;
+    public enum Placement
+    {
+        First,
+        Second,
+        Third,
+        Fourth
+    }
+    private Placement place;
 
     private void Start()
     {
+        place = Placement.First;
         // loop for placing players in map at random*
         for (int i = 0; i < pmM.Count; i++)
         {
@@ -47,7 +56,10 @@ public class Mazecontroller : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerMovement_MAZE pmM = collision.GetComponent<PlayerMovement_MAZE>();
-
+            if (!pmM.done)
+            {
+                pmM.scoreHelp(1);
+            }
         }
     }
 }
