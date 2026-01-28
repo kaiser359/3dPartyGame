@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,32 +23,55 @@ public class Tag_Movement : MonoBehaviour
     public float dashDuration = 0.15f;
     public float dashCooldown = 1.0f;
 
+    [Header("Jump Settings")]
+    public float jumpForce = 5f;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
     // Player direction
     private Vector3 move;
     private float sideInput;
     private float forwardInput;
 
-    [Header("Tagger Materials Settings")]
-    //Materials
+    [Header("Materials Settings")]
+    // Materials
     public Material taggerMaterial;
-    public Material taggerMaterial2;
-
-    [Header("Player Materials Settings")]
     public Material runnerMaterial;
+
+    [Header("Outline Settings")]
+    //public GameObject
+    public GameObject obj;
 
     // Dash state
     private bool canDash = true;
     private bool isDashing = false;
 
+    // Grounded state
+    private bool isGrounded = false;
+
+
     private void Start()
     {
-        // Ensure the correct material is applied at start based on role
+
+        // Ensure the correct material and outline visibility is applied at start based on role
         Material();
     }
 
     private void FixedUpdate()
     {
         float speedMultiplier = isTagger ? taggerSpeedMultiplier : 1f;
+
+        // Update grounded state (safe-check groundCheck)
+        if (groundCheck != null)
+        {
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore);
+        }
+        else
+        {
+            // fallback raycast if no groundCheck provided
+            isGrounded = Physics.Raycast(tf.position, Vector3.down, 1.1f);
+        }
 
         // Prevent diagonal inputs from exceeding magnitude 1
         if (move.sqrMagnitude > 1f)
@@ -80,6 +104,15 @@ public class Tag_Movement : MonoBehaviour
         print(v);
         sideInput = ctx.ReadValue<Vector2>().x;
         forwardInput = ctx.ReadValue<Vector2>().y;
+    }
+
+    // Jump action (bind a button to this, bind Space to the Jump action)
+    public void Jump(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     // Dash action (bind a button to this)
@@ -155,29 +188,22 @@ public class Tag_Movement : MonoBehaviour
         if (renderer == null)
             return;
 
-        if (isTagger)
+        // Use material at runtime to ensure instance when needed
+        renderer.material = isTagger ? taggerMaterial : runnerMaterial;
+
+        // Ensure `obj` is active only when this player is the tagger
+        if (obj != null)
         {
-            // If both tagger materials are assigned choose one randomly for variety.
-            if (taggerMaterial != null && taggerMaterial2 != null)
-            {
-                renderer.material = (UnityEngine.Random.value > 0.5f) ? taggerMaterial2 : taggerMaterial;
-            }
-            else if (taggerMaterial2 != null)
-            {
-                renderer.material = taggerMaterial2;
-            }
-            else
-            {
-                renderer.material = taggerMaterial;
-            }
+            obj.SetActive(isTagger);
         }
-        else
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
         {
-            // Runner material for non-taggers
-            if (runnerMaterial != null)
-                renderer.material = runnerMaterial;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
 }
-
-
