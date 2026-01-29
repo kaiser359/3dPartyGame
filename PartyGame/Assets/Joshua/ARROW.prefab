@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8893619121300284703}
   - component: {fileID: 6486611109970133641}
   - component: {fileID: 1073198862698969854}
+  - component: {fileID: 7075881263111115298}
   m_Layer: 0
   m_Name: ARROW
   m_TagString: arrow
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3f68348a3c54d4441bc7b6df78ee3808, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7075881263111115298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716844029355678489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2629da12ed74aa848838dbecf78790a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
