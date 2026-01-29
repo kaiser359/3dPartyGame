@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 695545228047833406}
   - component: {fileID: 3180395799980941578}
   - component: {fileID: 2198210526129679764}
-  - component: {fileID: 1992160429862939476}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -159,26 +158,6 @@ MonoBehaviour:
   Sway: 0
   idleSwayYaw: 0
   idleSwayPitch: 0
---- !u!114 &1992160429862939476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692406262073531703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f4943cbe9336140844e103182fc8e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loose: 0
-  BowSway: {fileID: 2198210526129679764}
-  firstStep: 0
-  spawner: {fileID: 0}
-  arrowPrefab: {fileID: 716844029355678489, guid: 9163e290601665341b3e43af1afd7898, type: 3}
-  arrowSpawnPoint: {fileID: 1398412492276774380}
-  arrowSpeed: 30
-  Player: {fileID: 7469262385246707292}
 --- !u!1 &5175007120396085281
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +171,7 @@ GameObject:
   - component: {fileID: 4143269022273734225}
   - component: {fileID: 8594782039470575550}
   - component: {fileID: 7469262385246707292}
+  - component: {fileID: 436986620337146926}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -296,7 +276,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1992160429862939476}
+      - m_Target: {fileID: 436986620337146926}
         m_TargetAssemblyTypeName: LooseArrow, Assembly-CSharp
         m_MethodName: loosePrep
         m_Mode: 0
@@ -312,7 +292,7 @@ MonoBehaviour:
     m_ActionName: 'Loose/loosePrep[/Mouse/clickCount]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1992160429862939476}
+      - m_Target: {fileID: 436986620337146926}
         m_TargetAssemblyTypeName: LooseArrow, Assembly-CSharp
         m_MethodName: Loose
         m_Mode: 0
@@ -347,6 +327,26 @@ MonoBehaviour:
   current: 0
   scoreText: {fileID: 1953547568055165612}
   Player: {fileID: 5175007120396085281}
+--- !u!114 &436986620337146926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175007120396085281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f4943cbe9336140844e103182fc8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loose: 0
+  BowSway: {fileID: 2198210526129679764}
+  firstStep: 0
+  canShoot: 0
+  arrowPrefab: {fileID: 716844029355678489, guid: 9163e290601665341b3e43af1afd7898, type: 3}
+  arrowSpawnPoint: {fileID: 1398412492276774380}
+  arrowSpeed: 50
+  Player: {fileID: 7469262385246707292}
 --- !u!1 &6388259284098629869
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 1798108015654023143}
   - component: {fileID: 4731810837252286738}
   - component: {fileID: 6576404882741375485}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
