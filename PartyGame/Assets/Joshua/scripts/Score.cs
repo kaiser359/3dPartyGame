@@ -14,10 +14,7 @@ public class Score : MonoBehaviour
     void Start()
     {
         var loose = GetComponentInParent<LooseArrow>();
-        if (loose != null)
-        {
-            Player = loose.spawner;
-        }
+        
 
         if (scoreText == null && Player != null)
         {
