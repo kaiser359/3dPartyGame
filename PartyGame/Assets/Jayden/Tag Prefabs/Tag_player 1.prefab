@@ -324,10 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2801369219576963609}
   tf: {fileID: 1419603893222458302}
-  acceleration: 10
-  topSpeed: 5
+  acceleration: 40
+  topSpeed: 3
   isTagger: 1
-  taggerSpeedMultiplier: 1.5
+  taggerSpeedMultiplier: 1.2
   dashForce: 10
   dashDuration: 0.15
   dashCooldown: 1
@@ -340,14 +340,18 @@ MonoBehaviour:
   taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
   runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
   obj: {fileID: 8164313980682098549}
-  radius: 5
+  radius: 8
   targetTag: Player
   useUnityTag: 0
-  applyTag: Tagged
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   checkInterval: 0.2
+  enablePeriodicRangedTag: 0
+  requireLineOfSight: 1
+  clickMaxDistance: 20
+  postTagImmunity: 0.5
+  lastTaggedTime: -Infinity
 --- !u!136 &18179550866683971
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -448,7 +452,19 @@ MonoBehaviour:
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3657594483692758589}
+        m_TargetAssemblyTypeName: Tag_Movement, Assembly-CSharp
+        m_MethodName: TagClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:

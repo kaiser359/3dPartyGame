@@ -54,15 +54,24 @@ public class Tag_Movement : MonoBehaviour
     public float radius = 5f;
     public string targetTag = "Player";
     public bool useUnityTag = false;
-    public string applyTag = "Tagged";
     public LayerMask layerMask = ~0;
     public float checkInterval = 0.2f;
+    // New controls:
+    public bool enablePeriodicRangedTag = false; // set true to enable automatic periodic tagging
+    public bool requireLineOfSight = true;       // optional: require clear LOS before tagging
 
     float nextCheck = 0f;
 
     [Header("Click Tag Settings")]
     // Maximum distance for left-click ray tagging
     public float clickMaxDistance = 20f;
+
+    [Header("Tagging Immunity Settings")]
+    // Short immunity window after being tagged to prevent instant re-tagging
+    public float postTagImmunity = 0.5f;
+    // Timestamp of when this player was last involved in a tag transfer (either gained or lost)
+    [HideInInspector]
+    public float lastTaggedTime = -Mathf.Infinity;
 
     private void Start()
     {
@@ -77,7 +86,7 @@ public class Tag_Movement : MonoBehaviour
         if (isTagger && Time.time >= nextCheck)
         {
             nextCheck = Time.time + Mathf.Max(0.01f, checkInterval);
-            TryRangedTag();
+           // TryRangedTag();
         }
     }
 
@@ -195,6 +204,10 @@ public class Tag_Movement : MonoBehaviour
             // If the other player is not the tagger, transfer the tag
             if (!other.isTagger)
             {
+                // Respect immunity window
+                if (Time.time < other.lastTaggedTime + postTagImmunity)
+                    return;
+
                 TransferTag(other);
             }
         }
@@ -206,6 +219,10 @@ public class Tag_Movement : MonoBehaviour
         other.isTagger = true;
         isTagger = false;
 
+        // Set timestamps to give short immunity to both players
+        other.lastTaggedTime = Time.time;
+        this.lastTaggedTime = Time.time;
+
         // Update visuals immediately on both players
         other.Material();
         Material();
@@ -216,59 +233,62 @@ public class Tag_Movement : MonoBehaviour
     // Periodic ranged tag check - finds nearest valid target and transfers tag
     private void TryRangedTag()
     {
+        // Only the current tagger should perform ranged tagging.
+        if (!isTagger)
+            return;
+
         if (tf == null)
             return;
 
+        // Collect nearby colliders within radius using provided layerMask.
         Collider[] hits = Physics.OverlapSphere(tf.position, radius, layerMask, QueryTriggerInteraction.Ignore);
         if (hits == null || hits.Length == 0)
             return;
 
-        float bestDistSqr = float.MaxValue;
-        Tag_Movement bestTarget = null;
+        float bestDistSq = float.MaxValue;
+        Tag_Movement bestCandidate = null;
 
-        foreach (var c in hits)
+        foreach (var col in hits)
         {
-            if (c == null || c.gameObject == gameObject)
+            if (col == null)
                 continue;
 
-            // If using Unity tag filtering, skip objects that don't match
-            if (useUnityTag)
-            {
-                if (!c.CompareTag(targetTag))
-                    continue;
-            }
-
-            if (!c.TryGetComponent<Tag_Movement>(out var other))
+            // Try to get Tag_Movement from the collider or its parents (handles nested collider setups).
+            Tag_Movement other = col.GetComponentInParent<Tag_Movement>();
+            if (other == null)
                 continue;
 
+            // Skip ourselves.
+            if (other == this)
+                continue;
+
+            // Only tag non-taggers.
             if (other.isTagger)
                 continue;
 
-            float dSqr = (c.transform.position - tf.position).sqrMagnitude;
-            if (dSqr < bestDistSqr)
+            // If configured, require the Unity tag to match.
+            if (useUnityTag && !other.gameObject.CompareTag(targetTag))
+                continue;
+
+            // Respect the post-tag immunity window on the target.
+            if (Time.time < other.lastTaggedTime + postTagImmunity)
+                continue;
+
+            // Compute squared distance to choose nearest target (avoids sqrt).
+            Vector3 otherPos = (other.tf != null) ? other.tf.position : other.transform.position;
+            float distSq = (otherPos - tf.position).sqrMagnitude;
+
+            if (distSq < bestDistSq)
             {
-                bestDistSqr = dSqr;
-                bestTarget = other;
+                bestDistSq = distSq;
+                bestCandidate = other;
             }
         }
 
-        if (bestTarget != null)
+        // If we found a valid nearest candidate, transfer the tag.
+        if (bestCandidate != null)
         {
-            TransferTag(bestTarget);
-
-            // Optionally apply a Unity tag to the newly-tagged object if specified.
-            if (!string.IsNullOrEmpty(applyTag))
-            {
-                // Note: ensure the tag exists in Unity Editor.
-                try
-                {
-                    bestTarget.gameObject.tag = applyTag;
-                }
-                catch
-                {
-                    Debug.LogWarning($"Failed to assign tag '{applyTag}' to {bestTarget.gameObject.name}. Ensure the tag exists.");
-                }
-            }
+            TransferTag(bestCandidate);
         }
     }
 
