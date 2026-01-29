@@ -132,7 +132,9 @@ public class SitOnchairTogetReady : MonoBehaviour
 
                 if (entry.player != null && entry.chair != null)
                     entry.player.transform.position = entry.chair.transform.position + entry.chair.transform.forward * 1.0f;
-                entry.movementScript.enabled = true;
+                // guard against null movementScript to avoid NRE
+                if (entry.movementScript != null)
+                    entry.movementScript.enabled = true;
 
                 break;
             }
@@ -141,7 +143,8 @@ public class SitOnchairTogetReady : MonoBehaviour
     void UnlockEntry(ChairData entry)
     {
         if (entry == null) return;
-        if (entry.movementScript != null) entry.movementScript.enabled = false;
+        // Re-enable movement on unlock (was disabling previously)
+        if (entry.movementScript != null) entry.movementScript.enabled = true;
         if (entry.playerRb != null)
         {
             entry.playerRb.constraints = entry.originalConstraints;
@@ -154,7 +157,7 @@ public class SitOnchairTogetReady : MonoBehaviour
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
         // CardsVote.Instance.StartVoting();
-        var cardsVote = FindObjectOfType<CardsVote>();
+        var cardsVote = FindFirstObjectByType<CardsVote>();
         if (cardsVote != null)
             cardsVote.StartVoting();
         else
