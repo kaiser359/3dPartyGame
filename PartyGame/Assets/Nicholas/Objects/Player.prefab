@@ -155,9 +155,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8198750743593189630}
   tf: {fileID: 6120472529675141303}
+  mc: {fileID: 0}
+  ws: {fileID: 0}
+  pi: {fileID: 1715736085704946934}
   acceleration: 40
   topSpeed: 5
-  dead: 0
+  done: 0
 --- !u!114 &1715736085704946934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +253,7 @@ GameObject:
   - component: {fileID: 4538016142651087603}
   - component: {fileID: 8896843682490058805}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +332,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716494691411889714}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4538016142651087603
 MonoBehaviour:
   m_ObjectHideFlags: 0

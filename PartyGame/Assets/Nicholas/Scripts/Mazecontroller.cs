@@ -58,7 +58,22 @@ public class Mazecontroller : MonoBehaviour
             PlayerMovement_MAZE pmM = collision.GetComponent<PlayerMovement_MAZE>();
             if (!pmM.done)
             {
-                pmM.scoreHelp(1);
+                if(place == Placement.First)
+                {
+                    pmM.scoreHelp(3);
+                    place = Placement.Second;
+                }
+                else if(place == Placement.Second)
+                {
+                    pmM.scoreHelp(2);
+                    place = Placement.Third;
+                }
+                else if(place == Placement.Third)
+                {
+                    pmM.scoreHelp(1);
+                    place = Placement.Fourth;
+                }
+                pmM.tf.position = new Vector3(0, 25, 0);
             }
         }
     }

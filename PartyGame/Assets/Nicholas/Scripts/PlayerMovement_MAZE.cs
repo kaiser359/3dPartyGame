@@ -10,7 +10,8 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public Transform tf;
     public Mazecontroller mc;
     public WinStatement ws;
-    
+    public PlayerInput pi;
+
 
     [Header("Player Settings")]
     public float acceleration;
@@ -22,7 +23,6 @@ public class PlayerMovement_MAZE : MonoBehaviour
     private float forwardInput;
 
     private Random rand = new Random();
-    private PlayerInput play;
 
     public bool done;
     private void Awake()
@@ -60,7 +60,7 @@ public class PlayerMovement_MAZE : MonoBehaviour
 
     public void score()
     {
-        if(play.playerIndex == 0)
+        if(pi.playerIndex == 0)
         {
 
         }
@@ -72,23 +72,23 @@ public class PlayerMovement_MAZE : MonoBehaviour
     }
     public int getPlayerIndex()
     {
-        return play.playerIndex;
+        return pi.playerIndex;
     }
     public void scoreHelp(int points)
     {
-        if(play.playerIndex == 0)
+        if(pi.playerIndex == 0)
         {
             ws.playerScore(points);
         }
-        else if (play.playerIndex == 1)
+        else if (pi.playerIndex == 1)
         {
             ws.player2Score(points);
         }
-        else if (play.playerIndex == 2)
+        else if (pi.playerIndex == 2)
         {
             ws.player3Score(points);
         }
-        else if (play.playerIndex == 3)
+        else if (pi.playerIndex == 3)
         {
             ws.player4Score(points);
         }
