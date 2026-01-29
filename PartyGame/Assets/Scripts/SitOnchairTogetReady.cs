@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [System.Serializable]
 public class ChairData
@@ -50,7 +51,8 @@ public class SitOnchairTogetReady : MonoBehaviour
                 if (entry.player != null && entry.chair != null)
                 {
                     entry.player.transform.position = entry.chair.transform.position;
-                    
+                    entry.player.transform.rotation = entry.chair.transform.rotation;
+
                     if (entry.movementScript != null) entry.movementScript.enabled = false;
                     
                     if (entry.playerRb != null)
@@ -86,6 +88,15 @@ public class SitOnchairTogetReady : MonoBehaviour
 
         int activePlayerCount = 0;
         int readyCount = 0;
+
+        if (chairs[0].movementScript == null)
+        {
+            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+        }
+        if (chairs[1].movementScript == null)
+        {
+      //      chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
+        }
 
         for (int i = 0; i < chairs.Count; i++)
         {
@@ -142,5 +153,6 @@ public class SitOnchairTogetReady : MonoBehaviour
     protected virtual void StartMinigame()
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
+        LevelUpSystem.Instance.ShowVoting();
     }
 }
