@@ -50,12 +50,35 @@ public class Tag_Movement : MonoBehaviour
     // Grounded state
     private bool isGrounded = false;
 
+    [Header(" Ranged Tagging Settings")]
+    public float radius = 5f;
+    public string targetTag = "Player";
+    public bool useUnityTag = false;
+    public string applyTag = "Tagged";
+    public LayerMask layerMask = ~0;
+    public float checkInterval = 0.2f;
+
+    float nextCheck = 0f;
+
+    [Header("Click Tag Settings")]
+    // Maximum distance for left-click ray tagging
+    public float clickMaxDistance = 20f;
 
     private void Start()
     {
 
         // Ensure the correct material and outline visibility is applied at start based on role
         Material();
+    }
+
+    private void Update()
+    {
+        // Periodic ranged tag checks only when this player is the tagger
+        if (isTagger && Time.time >= nextCheck)
+        {
+            nextCheck = Time.time + Mathf.Max(0.01f, checkInterval);
+            TryRangedTag();
+        }
     }
 
     private void FixedUpdate()
@@ -144,6 +167,22 @@ public class Tag_Movement : MonoBehaviour
         canDash = true;
     }
 
+    // New: Left mouse click tag action.
+    // Bind this to a left-click InputAction (performed) in the Input System.
+    // On click, use the same ranged-tagging logic as the periodic check.
+    public void TagClick(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        // only the current tagger can tag via click
+        if (!isTagger)
+            return;
+
+        // Use the existing ranged tag logic so clicking triggers nearest-in-radius tagging
+        TryRangedTag();
+    }
+
     // When this collider hits another player, transfer the tag if applicable
     private void OnCollisionEnter(Collision collision)
     {
@@ -174,6 +213,65 @@ public class Tag_Movement : MonoBehaviour
         Debug.Log($"{gameObject.name} tagged {other.gameObject.name}. Tag transferred.");
     }
 
+    // Periodic ranged tag check - finds nearest valid target and transfers tag
+    private void TryRangedTag()
+    {
+        if (tf == null)
+            return;
+
+        Collider[] hits = Physics.OverlapSphere(tf.position, radius, layerMask, QueryTriggerInteraction.Ignore);
+        if (hits == null || hits.Length == 0)
+            return;
+
+        float bestDistSqr = float.MaxValue;
+        Tag_Movement bestTarget = null;
+
+        foreach (var c in hits)
+        {
+            if (c == null || c.gameObject == gameObject)
+                continue;
+
+            // If using Unity tag filtering, skip objects that don't match
+            if (useUnityTag)
+            {
+                if (!c.CompareTag(targetTag))
+                    continue;
+            }
+
+            if (!c.TryGetComponent<Tag_Movement>(out var other))
+                continue;
+
+            if (other.isTagger)
+                continue;
+
+            float dSqr = (c.transform.position - tf.position).sqrMagnitude;
+            if (dSqr < bestDistSqr)
+            {
+                bestDistSqr = dSqr;
+                bestTarget = other;
+            }
+        }
+
+        if (bestTarget != null)
+        {
+            TransferTag(bestTarget);
+
+            // Optionally apply a Unity tag to the newly-tagged object if specified.
+            if (!string.IsNullOrEmpty(applyTag))
+            {
+                // Note: ensure the tag exists in Unity Editor.
+                try
+                {
+                    bestTarget.gameObject.tag = applyTag;
+                }
+                catch
+                {
+                    Debug.LogWarning($"Failed to assign tag '{applyTag}' to {bestTarget.gameObject.name}. Ensure the tag exists.");
+                }
+            }
+        }
+    }
+
     public void Escape(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -198,12 +296,21 @@ public class Tag_Movement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
+
+        // Draw ground check sphere if groundCheck is assigned
         if (groundCheck != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+
+        // Draw ranged tag radius for the tagger in the editor
+        if (tf != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(tf.position, radius);
         }
     }
 }
