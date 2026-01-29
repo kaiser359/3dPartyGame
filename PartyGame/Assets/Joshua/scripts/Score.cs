@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +7,28 @@ public class Score : MonoBehaviour
     public int current = 0;
 
     [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject Player;
+
+    private bool warnedMissingText = false;
+
+    void Start()
+    {
+        var loose = GetComponentInParent<LooseArrow>();
+        if (loose != null)
+        {
+            Player = loose.spawner;
+        }
+
+        if (scoreText == null && Player != null)
+        {
+            // Try to find a Text component on the spawner GameObject or its children
+            scoreText = Player.GetComponent<Text>() ?? Player.GetComponentInChildren<Text>();
+            if (scoreText == null)
+            {
+                warnedMissingText = false; // ensure one-time warning in Update
+            }
+        }
+    }
 
     void Update()
     {
@@ -17,8 +38,11 @@ public class Score : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("scoreText is not assigned on TargetPoints.");
+            if (!warnedMissingText)
+            {
+                Debug.LogWarning("scoreText is not assigned and no Text component was found on the LooseArrow.spawner.");
+                warnedMissingText = true;
+            }
         }
-
     }
 }
