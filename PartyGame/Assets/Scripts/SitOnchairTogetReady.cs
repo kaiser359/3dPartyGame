@@ -91,7 +91,7 @@ public class SitOnchairTogetReady : MonoBehaviour
 
         if (chairs[0].movementScript == null)
         {
-            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+       //     chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
         }
         if (chairs[1].movementScript == null)
         {
@@ -153,6 +153,11 @@ public class SitOnchairTogetReady : MonoBehaviour
     protected virtual void StartMinigame()
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
-        LevelUpSystem.Instance.ShowVoting();
+        // CardsVote.Instance.StartVoting();
+        var cardsVote = FindObjectOfType<CardsVote>();
+        if (cardsVote != null)
+            cardsVote.StartVoting();
+        else
+            Debug.LogError("CardsVote instance not found in the scene.");
     }
 }
