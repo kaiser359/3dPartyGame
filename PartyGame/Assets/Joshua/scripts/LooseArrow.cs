@@ -64,6 +64,8 @@ public class LooseArrow : MonoBehaviour
     public void ArcheryEnd()
     {
         canShoot = false;
+        BowSway.Sway = BowSway.Direction.None; 
+
     }
 }
 
