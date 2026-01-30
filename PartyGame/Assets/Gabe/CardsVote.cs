@@ -115,7 +115,7 @@ public class CardsVote : MonoBehaviour
             yield return null;
             hai.text = $"Voting ends in {Mathf.CeilToInt(remaining)} seconds";
             remaining -= Time.deltaTime;
-            // Optionally update a timer UI here by exposing remaining/time to another component
+          
         }
         FinishVoting();
     }
