@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3230683448231447080}
   - component: {fileID: 6234224183152087294}
   - component: {fileID: 4589493716255663468}
+  - component: {fileID: 257878144283923050}
   m_Layer: 0
   m_Name: shoot
   m_TagString: Untagged
@@ -78,8 +79,8 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
+  m_enableVertexGradient: 1
+  m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
@@ -138,6 +139,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &257878144283923050
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571271935534195074}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95bca8bf8066d1b41983edd78c20f986, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1797829394348594471
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +172,7 @@ GameObject:
   - component: {fileID: 6108126526874717684}
   - component: {fileID: 4941240849481005959}
   - component: {fileID: 1846628899666581598}
+  - component: {fileID: 4150798292244187009}
   m_Layer: 0
   m_Name: dont autoclick
   m_TagString: Untagged
@@ -203,7 +227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cooling down (shoot when the light goes out)
+  m_text: Input Cooldown (only shoot when the light goes out)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -212,15 +236,15 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
+    rgba: 3947696
+  m_fontColor: {r: 0.6886792, g: 0.23713954, b: 0.23713954, a: 0}
+  m_enableVertexGradient: 1
+  m_colorMode: 0
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.48584908, b: 0.48584908, a: 1}
+    topRight: {r: 1, g: 0.48584908, b: 0.48584908, a: 1}
+    bottomLeft: {r: 1, g: 0.48584908, b: 0.48584908, a: 1}
+    bottomRight: {r: 1, g: 0.48584908, b: 0.48584908, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -274,6 +298,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &4150798292244187009
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797829394348594471}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95bca8bf8066d1b41983edd78c20f986, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4342513874295572296
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +369,8 @@ MonoBehaviour:
   duel_info: {fileID: 2042695349614933855}
   how2shoot: {fileID: 7222145059786106122}
   shoot: {fileID: 4589493716255663468}
+  noshoot: {fileID: 1846628899666581598}
+  gun_cooldown: 0
 --- !u!1 &5326345434150209435
 GameObject:
   m_ObjectHideFlags: 0

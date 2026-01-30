@@ -81,6 +81,8 @@ public class musical_chairs_manager : MonoBehaviour
             player.GetComponent<NavMeshAgent>().enabled = false;
             player.GetComponent<Bot_movement>().enabled = false;
             player.GetComponent<player_movement>().enabled = true;
+            player.GetComponent<player_movement>().topSpeed = 5;
+            player.GetComponent<player_movement>().acceleration = 40;
         }
 
         yield return new WaitUntil(() => FindObjectsByType<musicial_chair>(FindObjectsSortMode.None).All(item => item.taken));
@@ -103,13 +105,22 @@ public class musical_chairs_manager : MonoBehaviour
                 }
             }
         }
+        duel_center.transform.Rotate(0, Random.Range(0, 360), 0);
         if (dueler1.GetComponent<player_movement>() != null)
         {
-            dueler1.GetComponent<player_movement>().enabled = false;
+            dueler1.GetComponent<player_movement>().topSpeed = 0;
+            dueler1.GetComponent<player_movement>().acceleration = 0;
+            dueler1.GetComponent<player_movement>().in_duel = true;
+            dueler1.GetComponent<Bot_movement>().enabled = true;
+            dueler1.GetComponent<NavMeshAgent>().enabled = true;
         }
         if (dueler2.GetComponent<player_movement>() != null)
         {
-            dueler2.GetComponent<player_movement>().enabled = false;
+            dueler2.GetComponent<player_movement>().topSpeed = 0;
+            dueler2.GetComponent<player_movement>().acceleration = 0;
+            dueler2.GetComponent<player_movement>().in_duel = true;
+            dueler2.GetComponent<Bot_movement>().enabled = true;
+            dueler2.GetComponent<NavMeshAgent>().enabled = true;
         }
         yield return new WaitForSeconds(1f);
         dueler1.goal = duel_spot1;
@@ -122,6 +133,14 @@ public class musical_chairs_manager : MonoBehaviour
         dueler2.gameObject.transform.position = duel_spot2.transform.position;
         yield return new WaitForSeconds(2f);
         duel_center.GetComponent<AudioSource>().Play();
+        if (dueler1.GetComponent<player_movement>() != null)
+        {
+            dueler1.GetComponent<player_movement>().give_shoot_tutorial();
+        }
+        if (dueler2.GetComponent<player_movement>() != null)
+        {
+            dueler2.GetComponent<player_movement>().give_shoot_tutorial();
+        }
         float random_time = Random.Range(8f, 16f);
         float timeElapsed = 0;
         while (timeElapsed < random_time)
@@ -133,8 +152,24 @@ public class musical_chairs_manager : MonoBehaviour
         }
         lightbulb.lightsoff();
         duel_center.GetComponent<AudioSource>().Pause();
-        dueler1.StartCoroutine(dueler1.shoot());
-        dueler2.StartCoroutine(dueler2.shoot());
+        if (dueler1.GetComponent<player_movement>() != null)
+        {
+            dueler1.GetComponent<player_movement>().can_shoot = true;
+            dueler1.GetComponent<player_movement>().shootnow();
+        }
+        else
+        {
+            dueler1.StartCoroutine(dueler1.shoot());
+        }
+        if (dueler2.GetComponent<player_movement>() != null)
+        {
+            dueler2.GetComponent<player_movement>().can_shoot = true;
+            dueler2.GetComponent<player_movement>().shootnow();
+        }
+        else
+        {
+            dueler2.StartCoroutine(dueler2.shoot());
+        }
         shooting_phase = true;
         lightbulb.rotx += 2f;
         lightbulb.rotz += 2f;
@@ -171,7 +206,6 @@ public class musical_chairs_manager : MonoBehaviour
             {
                 chair.GetComponent<musicial_chair>().taken = false;
             }
-            Debug.Log("Test");
             foreach (Bot_movement movement in agents)
             {
                 if (movement.alive == true)
@@ -189,9 +223,14 @@ public class musical_chairs_manager : MonoBehaviour
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in players)
             {
-                player.GetComponent<NavMeshAgent>().enabled = true;
-                player.GetComponent<Bot_movement>().enabled = true;
-                player.GetComponent<player_movement>().enabled = false;
+                if (player.GetComponent<Bot_movement>().alive == true)
+                {
+                    player.GetComponent<NavMeshAgent>().enabled = true;
+                    player.GetComponent<Bot_movement>().enabled = true;
+                    player.GetComponent<player_movement>().topSpeed = 0;
+                    player.GetComponent<player_movement>().acceleration = 0;
+                    player.GetComponent<player_movement>().enabled = false;
+                }
             }
             yield return new WaitForSeconds(1f);
             StartCoroutine(round());
