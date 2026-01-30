@@ -86,7 +86,7 @@ public class Tag_Movement : MonoBehaviour
         if (isTagger && Time.time >= nextCheck)
         {
             nextCheck = Time.time + Mathf.Max(0.01f, checkInterval);
-           // TryRangedTag();
+            TryRangedTag();
         }
     }
 
@@ -241,20 +241,17 @@ public class Tag_Movement : MonoBehaviour
             return;
 
         // Collect nearby colliders within radius using provided layerMask.
-        Collider[] hits = Physics.OverlapSphere(tf.position, radius, layerMask, QueryTriggerInteraction.Ignore);
-        if (hits == null || hits.Length == 0)
+        RaycastHit[] hits = Physics.SphereCastAll(tf.position, radius, Vector3.zero, radius, layerMask);
+        if (hits.Length == 0)
             return;
 
         float bestDistSq = float.MaxValue;
         Tag_Movement bestCandidate = null;
 
-        foreach (var col in hits)
+        foreach (var hit in hits)
         {
-            if (col == null)
-                continue;
-
             // Try to get Tag_Movement from the collider or its parents (handles nested collider setups).
-            Tag_Movement other = col.GetComponentInParent<Tag_Movement>();
+            Tag_Movement other = hit.collider.GetComponentInParent<Tag_Movement>();
             if (other == null)
                 continue;
 
