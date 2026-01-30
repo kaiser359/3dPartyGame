@@ -26,26 +26,15 @@ public class Curtis : MonoBehaviour
             while (done == false)
             {
                 int player = rand.Next(0,targets.Count);
-                if (targets[0].dead && targets[1].dead && targets[2].dead && targets[3].dead)
-                {
-                    Destroy(gameObject);
-                    break;
-                }
-                else if (!targets[player].dead)
-                {
-                    Target(targets[player].tf);
-                    done = true;
-                    break;
-
-                }
-                
+                Target(targets[player].tf);
+                done = true;
+                break;
             }
         }
         if(elapsedTime >= 25)
         {
             elapsedTime = 0;
         }
-        
     }
 
     private void OnTriggerEnter(Collider collision)
