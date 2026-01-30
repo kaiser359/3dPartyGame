@@ -74,6 +74,7 @@ public class Mazecontroller : MonoBehaviour
                     place = Placement.Fourth;
                 }
                 pmM.tf.position = new Vector3(0, 25, 0);
+                pmM.done = true;
             }
         }
     }
