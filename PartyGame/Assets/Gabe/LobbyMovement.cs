@@ -23,7 +23,7 @@ public class LobbyMovement : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
         var pi = GetComponent<PlayerInput>();
         int index = (pi != null) ? pi.playerIndex : 0;
         if (boo == null)
