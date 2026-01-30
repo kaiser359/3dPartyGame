@@ -54,7 +54,7 @@ public class Bot_movement : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        yield return new WaitForSeconds(Random.Range(0.6f, 2f));
+        yield return new WaitForSeconds(Random.Range(0.4f, 0.8f));
         if (alive)
         {
             game_manager.StartCoroutine(game_manager.shoot_phase(this));
