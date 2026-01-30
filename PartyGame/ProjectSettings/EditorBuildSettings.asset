@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Archery.unity
     guid: 10c55b246a99551428bf88dd057bee09
   - enabled: 1
-    path: Assets/Nicholas/Scenes/Test.unity
+    path: Assets/Nicholas/Scenes/Maze.unity
     guid: ed9c1b84f6adc654f9e15c25bfe97bf9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1386d26f092cd554d8d486317adfde05, type: 3}

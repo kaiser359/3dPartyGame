@@ -10,6 +10,7 @@ public class Limits : MonoBehaviour
     public UnityEvent onTimerEnd;
 
     [SerializeField] private float remainingTime;
+    public LooseArrow looseArrow;
 
     void Start()
     {
@@ -66,6 +67,7 @@ public class Limits : MonoBehaviour
     private void TimerEnded()
     {
         Debug.Log($"{gameObject.name} timer ended.");
+        looseArrow.ArcheryEnd();
         onTimerEnd?.Invoke();
     }
 
