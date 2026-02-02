@@ -32,6 +32,8 @@ public class player_movement : MonoBehaviour
             Mathf.Sqrt(sideInput);
         }
         move = tf.forward * forwardInput + tf.right * sideInput;
+        move.y = 0;
+        move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
         Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);

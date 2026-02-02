@@ -21,7 +21,7 @@ public class thirdpersoncamera : MonoBehaviour
 
         xRotation -= mouseX;
         yRotation -= mouseY;
-        yRotation = Mathf.Clamp(yRotation, -20f, 90f);
+        yRotation = Mathf.Clamp(yRotation, -20f, 89f);
 
         pivotx.transform.localRotation = Quaternion.Euler(yRotation, -xRotation, 0f);
     }
