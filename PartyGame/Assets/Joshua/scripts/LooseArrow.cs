@@ -1,14 +1,10 @@
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics.Tracing;
+
 
 public class LooseArrow : MonoBehaviour
 {
@@ -139,6 +135,7 @@ public class LooseArrow : MonoBehaviour
         }
 
         Destroy(a, 0.1f);
+        SceneManager.LoadScene("SampleScene");
     }
 }
 
