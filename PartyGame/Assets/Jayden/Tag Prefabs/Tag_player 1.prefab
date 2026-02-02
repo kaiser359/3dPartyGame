@@ -325,13 +325,13 @@ MonoBehaviour:
   rb: {fileID: 2801369219576963609}
   tf: {fileID: 1419603893222458302}
   acceleration: 40
-  topSpeed: 3
+  topSpeed: 6
   isTagger: 1
   taggerSpeedMultiplier: 1.2
   dashForce: 10
   dashDuration: 0.15
   dashCooldown: 1
-  jumpForce: 5
+  jumpForce: 15
   groundCheck: {fileID: 6152007029577541891}
   groundCheckRadius: 0.2
   groundLayer:
@@ -340,16 +340,6 @@ MonoBehaviour:
   taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
   runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
   obj: {fileID: 8164313980682098549}
-  radius: 8
-  targetTag: Player
-  useUnityTag: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  checkInterval: 0.2
-  enablePeriodicRangedTag: 0
-  requireLineOfSight: 1
-  clickMaxDistance: 20
   postTagImmunity: 0.5
   lastTaggedTime: -Infinity
 --- !u!136 &18179550866683971
@@ -384,7 +374,7 @@ Rigidbody:
   m_GameObject: {fileID: 3762833650783870713}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 4
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -555,6 +545,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61e561cd-3f8e-4632-9580-2d1d8cbc126b
+    m_ActionName: 'UI/Pause[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

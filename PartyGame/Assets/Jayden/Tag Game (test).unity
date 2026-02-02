@@ -422,119 +422,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &470198668
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1650691183}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Move
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TagClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Jump
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Paused
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameMenu, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 426985617638883958, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657594483692758589, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: useUnityTag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657594483692758589, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: clickMaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657594483692758589, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: enablePeriodicRangedTag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3762833650783870713, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_Name
-      value: Tag_player 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -33.18628
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 21.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -158.60933
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962768619037907707, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
 --- !u!1 &543265551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,7 +2558,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 4934507317909849834, guid: 6f8c6f23479db4643a8975871ae3eca2, type: 3}
+  m_PlayerPrefab: {fileID: 3762833650783870713, guid: ee87da73029f8fb48838b3b913f2ca7f, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -3161,16 +3048,6 @@ MonoBehaviour:
   taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
   runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
   obj: {fileID: 1024364902}
-  radius: 8
-  targetTag: Player
-  useUnityTag: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  checkInterval: 0.2
-  enablePeriodicRangedTag: 0
-  requireLineOfSight: 1
-  clickMaxDistance: 20
   postTagImmunity: 0.5
   lastTaggedTime: -Infinity
 --- !u!1 &2050137246
@@ -3301,4 +3178,3 @@ SceneRoots:
   - {fileID: 1863924561}
   - {fileID: 1740730400}
   - {fileID: 1965627339}
-  - {fileID: 470198668}
