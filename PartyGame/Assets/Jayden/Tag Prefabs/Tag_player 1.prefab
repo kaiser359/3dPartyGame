@@ -345,7 +345,7 @@ MonoBehaviour:
   useUnityTag: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   checkInterval: 0.2
   enablePeriodicRangedTag: 0
   requireLineOfSight: 1
