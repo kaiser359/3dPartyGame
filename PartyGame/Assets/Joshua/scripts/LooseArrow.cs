@@ -28,6 +28,8 @@ public class LooseArrow : MonoBehaviour
 
     public PlayerInput playerInput;
 
+    private static bool pointsAwarded = false;
+
     public void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -80,7 +82,16 @@ public class LooseArrow : MonoBehaviour
     }
     public void ArcheryEnd()
     {
-        
+        // Prevent duplicate awarding across multiple instances/calls
+        if (pointsAwarded)
+        {
+            Debug.Log("ArcheryEnd already processed. Skipping duplicate awarding.");
+            return;
+        }
+
+        // Mark as awarded so subsequent calls do nothing
+        pointsAwarded = true;
+
         BowSway.Sway = BowSway.Direction.None;
        
         Debug.Log("Archery Ended");
