@@ -91,7 +91,9 @@ public class SitOnchairTogetReady : MonoBehaviour
 
         if (chairs[0].movementScript == null)
         {
-       //     chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+            if (chairs[0].ready == true)
+                chairs[0].movementScript.enabled = false;
         }
         if (chairs[1].movementScript == null)
         {
