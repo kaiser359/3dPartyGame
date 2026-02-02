@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using System.Linq;
+using UnityEngine.InputSystem;
 public class musical_chairs_manager : MonoBehaviour
 {
 
     public GameObject force_mover;
     public GameObject bot;
-    public int bot_count = 7;
+    public int bot_count = 8;
     public mc_ui ui;
     public radio radio;
     public musical_chairs_light lightbulb;
@@ -24,7 +25,10 @@ public class musical_chairs_manager : MonoBehaviour
     public bool shooting_phase = false;
 
     public List<Bot_movement> agents = new List<Bot_movement>();
+    public List<GameObject> players = new List<GameObject>();
     public List<GameObject> chairs = new List<GameObject>();
+    public PlayerInputManager inputManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,15 +44,27 @@ public class musical_chairs_manager : MonoBehaviour
             new_bot.GetComponent<Bot_movement>().game_manager = this;
             agents.Add(new_bot.GetComponent<Bot_movement>());
         }
-        GameObject new_player_force_mover = Instantiate(force_mover);
-        GameObject player_mover = new_player_force_mover.GetComponent<forcemove>().mover;
-        new_player_force_mover.transform.Rotate(0, Random.Range(0, 360), 0);
-        player.GetComponent<Bot_movement>().goal = player_mover;
-        player.GetComponent<Bot_movement>().force_mover = player_mover;
-        player.GetComponent<Bot_movement>().game_manager = this;
-        player.transform.position = player_mover.transform.position;
-        agents.Add(player.GetComponent<Bot_movement>());
-        StartCoroutine(tutorial());
+
+        for (int i = 0; i < InputSystem.devices.Count; ++i)
+        {
+            var device = InputSystem.devices[i];
+
+            if (device.displayName == "Keyboard" || device.displayName == "Xbox Controller")
+            {
+                var newPlayer = inputManager.JoinPlayer(pairWithDevice: device);
+                int index = newPlayer.playerIndex;
+
+                GameObject new_player_force_mover = Instantiate(force_mover);
+                GameObject player_mover = new_player_force_mover.GetComponent<forcemove>().mover;
+                new_player_force_mover.transform.Rotate(0, Random.Range(0, 360), 0);
+                newPlayer.GetComponent<Bot_movement>().goal = player_mover;
+                newPlayer.GetComponent<Bot_movement>().force_mover = player_mover;
+                newPlayer.GetComponent<Bot_movement>().game_manager = this;
+                newPlayer.transform.position = player_mover.transform.position;
+                agents.Add(newPlayer.GetComponent<Bot_movement>());
+                players.Add(newPlayer.gameObject);
+            }
+        }
 
         GameObject[] chairs2 = GameObject.FindGameObjectsWithTag("chair");
         foreach (GameObject chair in chairs2)
