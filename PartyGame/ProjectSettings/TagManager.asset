@@ -6,6 +6,8 @@ TagManager:
   tags:
   - target
   - arrow
+  - chair
+  - Tagged
   layers:
   - Default
   - TransparentFX
@@ -13,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Tagger
+  - Ground
   - 
   - 
   - 

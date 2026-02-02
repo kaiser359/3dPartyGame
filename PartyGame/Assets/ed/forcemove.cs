@@ -7,7 +7,7 @@ public class forcemove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        speed = Random.Range(8f, 15f);
+        speed = Random.Range(7f, 9f);
     }
 
     // Update is called once per frame

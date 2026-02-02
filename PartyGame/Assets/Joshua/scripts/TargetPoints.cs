@@ -21,7 +21,7 @@ public class TargetPoints : MonoBehaviour
 
         if (other.CompareTag("arrow"))
         {
-            GetComponentInParent<Score>().current += pointsToAdd;
+            other.GetComponent<arrow>().Player.current += pointsToAdd;
             if (destroyArrowOnHit)
             {
                 Destroy(other);
