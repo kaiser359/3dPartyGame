@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762c3937d5a81e8419bde5113c31094b, type: 3}
   m_Name: PartyGameScore
   m_EditorClassIdentifier: 
-  Player1score: 0
-  Player2score: 0
+  Player1score: 21
+  Player2score: 10
   Player3score: 0
   Player4score: 0
   HiestScore: 0
