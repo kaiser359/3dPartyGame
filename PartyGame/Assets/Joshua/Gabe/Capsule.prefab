@@ -345,8 +345,12 @@ MonoBehaviour:
   cardsParent: {fileID: 3149589671389055990}
   hai: {fileID: 6834690593767581227}
   sceneNames:
-  - Test
+  - Maze
   - Archery
+  - musical chairs
+  - Tag Game (test)
+  - Hammer Fight
+  - Catch the Duende
   sceneIcons:
   - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

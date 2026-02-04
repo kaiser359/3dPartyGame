@@ -32,6 +32,9 @@ public class CardsVote : MonoBehaviour
     private bool isVotingActive = false;
     private Coroutine timerCoroutine;
 
+    // mapping local option index -> index in sceneNames
+    private int[] optionSceneIndices = new int[0];
+
     // Event: scene name of the winning option
     public Action<string> OnVoteComplete;
 
@@ -48,32 +51,49 @@ public class CardsVote : MonoBehaviour
         // prepare
         isVotingActive = true;
         playerVotes.Clear();
-        votes = new int[sceneNames.Length];
 
-        // create UI cards
+        // Choose exactly up to 2 unique random options from sceneNames
+        int optionCount = Math.Min(2, sceneNames.Length);
+        var pool = Enumerable.Range(0, sceneNames.Length).ToList();
+        optionSceneIndices = new int[optionCount];
+        for (int i = 0; i < optionCount; i++)
+        {
+            int pick = UnityEngine.Random.Range(0, pool.Count);
+            optionSceneIndices[i] = pool[pick];
+            pool.RemoveAt(pick);
+        }
+
+        // Random chance to swap which of the two chosen scenes appears as left/right
+        if (optionCount == 2 && UnityEngine.Random.value < 0.5f)
+        {
+            int tmp = optionSceneIndices[0];
+            optionSceneIndices[0] = optionSceneIndices[1];
+            optionSceneIndices[1] = tmp;
+        }
+
+        votes = new int[optionCount];
+
+        // create UI cards (only for the selected two)
         ClearExistingCards();
-        for (int i = 0; i < sceneNames.Length; i++)
+        for (int i = 0; i < optionCount; i++)
         {
             // Instantiate without parent first to avoid "parent is persistent" warning,
             // then explicitly set parent (keeps correct hierarchy and UI layout).
             var inst = Instantiate(cardPrefab);
             inst.transform.SetParent(cardsParent, false);
 
-            var title = sceneNames[i];
-            var icon = (sceneIcons != null && i < sceneIcons.Length) ? sceneIcons[i] : null;
+            int sceneIndex = optionSceneIndices[i];
+            var title = sceneNames[sceneIndex];
+            var icon = (sceneIcons != null && sceneIndex < sceneIcons.Length) ? sceneIcons[sceneIndex] : null;
             int idx = i; // local copy for lambda
-            inst.Setup(title, "", icon, 0, () =>
-            {
-                // UI Button callback - this will register a vote for player 0 by default.
-                // Prefer subscribing per-player actions or calling RegisterVote from player code.
-                RegisterVote(0, idx);
-            });
+
+            // Buttons are no longer used for voting. Do not wire up click callbacks.
+            // Keep Setup to populate UI, but pass null as the click handler.
+            inst.Setup(title, "", icon, 0, null);
             cardInstances.Add(inst);
         }
 
-        // Go through the event system on each player and select the first button (which in this case, should be the first card).
-        var eventSystem = GetComponentInChildren<MultiplayerEventSystem>();
-        eventSystem.SetSelectedGameObject(cardInstances[0].gameObject);
+        // Do not force-select any button via MultiplayerEventSystem since voting uses input actions now.
 
         // subscribe to all PlayerInput players
         SubscribeToPlayerInputs();
@@ -111,7 +131,7 @@ public class CardsVote : MonoBehaviour
         playerVotes[playerIndex] = optionIndex;
         votes[optionIndex]++;
         UpdateCardVotesDisplay();
-        Debug.Log($"Player {playerIndex} voted for option {optionIndex} ({sceneNames[optionIndex]}).");
+
     }
 
     private IEnumerator VoteTimerRoutine(float seconds)
@@ -120,9 +140,9 @@ public class CardsVote : MonoBehaviour
         while (remaining > 0f)
         {
             yield return null;
-            hai.text = $"Voting ends in {Mathf.CeilToInt(remaining)} seconds";
+            if (hai != null) hai.text = $"Voting ends in {Mathf.CeilToInt(remaining)} seconds";
             remaining -= Time.deltaTime;
-          
+
         }
         FinishVoting();
     }
@@ -138,10 +158,11 @@ public class CardsVote : MonoBehaviour
         for (int i = 0; i < votes.Length; i++)
             if (votes[i] == max) winners.Add(i);
 
-        int winningIndex = winners.Count > 1 ? winners[UnityEngine.Random.Range(0, winners.Count)] : winners[0];
+        int winningLocalIndex = winners.Count > 1 ? winners[UnityEngine.Random.Range(0, winners.Count)] : winners[0];
 
-        string winningScene = sceneNames[winningIndex];
-        Debug.Log($"Voting finished. Winning scene: {winningScene} (option {winningIndex}), votes: {votes[winningIndex]}");
+        // Map back to the original sceneNames index
+        string winningScene = sceneNames[optionSceneIndices[winningLocalIndex]];
+        Debug.Log($"Voting finished. Winning scene: {winningScene} (local option {winningLocalIndex}, sceneIndex {optionSceneIndices[winningLocalIndex]}), votes: {votes[winningLocalIndex]}");
 
         OnVoteComplete?.Invoke(winningScene);
 
@@ -180,8 +201,8 @@ public class CardsVote : MonoBehaviour
         cardInstances.Clear();
     }
 
-    #region Input System wiring
     // Subscribe to actions on each PlayerInput to allow each player to vote.
+    // New behavior: look for "attack" (vote left) and "crouch" (vote right) actions in each PlayerInput.
     private List<(PlayerInput player, List<InputActionReferenceBinding>)> subscriptions = new List<(PlayerInput, List<InputActionReferenceBinding>)>();
 
     private void SubscribeToPlayerInputs()
@@ -189,49 +210,83 @@ public class CardsVote : MonoBehaviour
         UnsubscribeFromPlayerInputs();
         foreach (var p in PlayerInput.all)
         {
-            // store the actions we subscribed so we can remove them later
             var bound = new List<InputActionReferenceBinding>();
 
-            // Try per-option actions: VoteOption0, VoteOption1, ...
-            bool anyBound = false;
-            for (int opt = 0; opt < votes.Length; opt++)
+            bool foundAttackOrCrouch = false;
+
+            // ATTACK -> left card (index 0 or fallback)
+            var attackAction = p.actions.FindAction("attack", false);
+            if (attackAction != null)
             {
-                var name = $"VoteOption{opt}";
-                // do NOT throw if the action is missing; check for null instead.
-                var action = p.actions.FindAction(name, false);
-                if (action != null)
+                foundAttackOrCrouch = true;
+                int playerIndex = p.playerIndex;
+                System.Action<InputAction.CallbackContext> attackCb = ctx =>
                 {
-                    anyBound = true;
-                    // capture local variables
-                    int playerIndex = p.playerIndex;
-                    int optIndex = opt;
-                    action.performed += ctx => RegisterVote(playerIndex, optIndex);
-                    bound.Add(new InputActionReferenceBinding { action = action });
-                }
+                    int leftIndex = GetLeftOptionIndex();
+                    RegisterVote(playerIndex, leftIndex);
+                };
+                attackAction.performed += attackCb;
+                bound.Add(new InputActionReferenceBinding { action = attackAction, callback = attackCb });
             }
 
-            if (!anyBound)
+            // CROUCH -> right card (index 1 or fallback)
+            var crouchAction = p.actions.FindAction("crouch", false);
+            if (crouchAction != null)
             {
-                // fallback: try a single "Vote" action that returns an int
-                var fallback = p.actions.FindAction("Vote", false);
-                if (fallback != null)
+                foundAttackOrCrouch = true;
+                int playerIndex = p.playerIndex;
+                System.Action<InputAction.CallbackContext> crouchCb = ctx =>
                 {
-                    int playerIndex = p.playerIndex;
-                    fallback.performed += ctx =>
+                    int rightIndex = GetRightOptionIndex();
+                    RegisterVote(playerIndex, rightIndex);
+                };
+                crouchAction.performed += crouchCb;
+                bound.Add(new InputActionReferenceBinding { action = crouchAction, callback = crouchCb });
+            }
+
+            if (!foundAttackOrCrouch)
+            {
+                // fallback: try per-option actions: VoteOption0, VoteOption1, ...
+                bool anyBound = false;
+                for (int opt = 0; opt < votes.Length; opt++)
+                {
+                    var name = $"VoteOption{opt}";
+                    var action = p.actions.FindAction(name, false);
+                    if (action != null)
                     {
-                        int selected = 0;
-                        try
+                        anyBound = true;
+                        int playerIndex = p.playerIndex;
+                        int optIndex = opt;
+                        System.Action<InputAction.CallbackContext> cb = ctx => RegisterVote(playerIndex, optIndex);
+                        action.performed += cb;
+                        bound.Add(new InputActionReferenceBinding { action = action, callback = cb });
+                    }
+                }
+
+                if (!anyBound)
+                {
+                    // fallback: try a single "Vote" action that returns an int
+                    var fallback = p.actions.FindAction("Vote", false);
+                    if (fallback != null)
+                    {
+                        int playerIndex = p.playerIndex;
+                        System.Action<InputAction.CallbackContext> fb = ctx =>
                         {
-                            selected = ctx.ReadValue<int>();
-                        }
-                        catch
-                        {
-                            // if value can't be read as int, ignore
-                            return;
-                        }
-                        RegisterVote(playerIndex, selected);
-                    };
-                    bound.Add(new InputActionReferenceBinding { action = fallback });
+                            int selected = 0;
+                            try
+                            {
+                                selected = ctx.ReadValue<int>();
+                            }
+                            catch
+                            {
+                                // if value can't be read as int, ignore
+                                return;
+                            }
+                            RegisterVote(playerIndex, selected);
+                        };
+                        fallback.performed += fb;
+                        bound.Add(new InputActionReferenceBinding { action = fallback, callback = fb });
+                    }
                 }
             }
 
@@ -248,13 +303,9 @@ public class CardsVote : MonoBehaviour
             var p = entry.player;
             foreach (var b in entry.Item2)
             {
-                if (b.action != null)
+                if (b.action != null && b.callback != null)
                 {
-                    // best-effort: remove all listeners by re-creating callbacks is not possible here,
-                    // but we can remove by removing anonymous by recreating - instead we rely on the fact
-                    // that actions are short-lived for the voting session and will be ignored when not active.
-                    // To be safer, remove all performed listeners by replacing with an empty delegate:
-                    b.action.performed -= ctx => { };
+                    b.action.performed -= b.callback;
                 }
             }
         }
@@ -265,6 +316,21 @@ public class CardsVote : MonoBehaviour
     private class InputActionReferenceBinding
     {
         public UnityEngine.InputSystem.InputAction action;
+        public System.Action<InputAction.CallbackContext> callback;
     }
-    #endregion
+
+    private int GetLeftOptionIndex()
+    {
+        // left maps to index 0 if available, otherwise clamp
+        if (votes == null || votes.Length == 0) return 0;
+        return 0;
+    }
+
+    private int GetRightOptionIndex()
+    {
+        // right maps to index 1 if available, otherwise use last option (or 0)
+        if (votes == null || votes.Length == 0) return 0;
+        return votes.Length > 1 ? 1 : votes.Length - 1;
+    }
+
 }
