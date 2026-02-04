@@ -326,12 +326,12 @@ MonoBehaviour:
   tf: {fileID: 1419603893222458302}
   acceleration: 40
   topSpeed: 6
-  isTagger: 1
+  isTagger: 0
   taggerSpeedMultiplier: 1.2
-  dashForce: 10
+  dashForce: 20
   dashDuration: 0.15
   dashCooldown: 1
-  jumpForce: 15
+  jumpForce: 8
   groundCheck: {fileID: 6152007029577541891}
   groundCheckRadius: 0.2
   groundLayer:

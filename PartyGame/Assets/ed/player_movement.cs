@@ -31,6 +31,7 @@ public class player_movement2 : MonoBehaviour
         Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
         velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
+        
     }
 
     public void Move(InputAction.CallbackContext ctx)
