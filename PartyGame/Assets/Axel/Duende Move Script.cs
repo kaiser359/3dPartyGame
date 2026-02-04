@@ -28,7 +28,7 @@ public class MoveTo : MonoBehaviour
 
             agent.destination = newGoal;
         }
-        else if (agent.remainingDistance < stopDistance)
+        else
         {
             agent.destination = goal.position;
         }
