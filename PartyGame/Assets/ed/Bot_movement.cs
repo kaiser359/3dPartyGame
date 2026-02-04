@@ -42,7 +42,6 @@ public class Bot_movement : MonoBehaviour
                         {
                             target_chair = chair.gameObject;
                             agent.destination = target_chair.transform.position;
-                            print(target_chair);
                             break;
                         }
                     }
