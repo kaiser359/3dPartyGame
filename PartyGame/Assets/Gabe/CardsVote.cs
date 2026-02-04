@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CardsVote : MonoBehaviour
 {
@@ -24,8 +27,8 @@ public class CardsVote : MonoBehaviour
 
     // runtime
     private List<LevelUpCard> cardInstances = new List<LevelUpCard>();
-    private int[] votes;
-    private Dictionary<int, int> playerVotes = new Dictionary<int, int>(); // key = playerIndex, value = optionIndex
+    private static int[] votes;
+    private static Dictionary<int, int> playerVotes = new Dictionary<int, int>(); // key = playerIndex, value = optionIndex
     private bool isVotingActive = false;
     private Coroutine timerCoroutine;
 
@@ -67,6 +70,10 @@ public class CardsVote : MonoBehaviour
             });
             cardInstances.Add(inst);
         }
+
+        // Go through the event system on each player and select the first button (which in this case, should be the first card).
+        var eventSystem = GetComponentInChildren<MultiplayerEventSystem>();
+        eventSystem.SetSelectedGameObject(cardInstances[0].gameObject);
 
         // subscribe to all PlayerInput players
         SubscribeToPlayerInputs();

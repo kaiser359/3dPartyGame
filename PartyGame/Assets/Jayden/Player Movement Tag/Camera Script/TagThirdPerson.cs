@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class tagthirdpersoncamera : MonoBehaviour
+public class tagthirdpersoncamera_stoppushingwitherrorsbro : MonoBehaviour
 {
     public float sensitivity;
     private float xRotation = 0f;

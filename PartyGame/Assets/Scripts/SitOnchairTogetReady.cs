@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -92,13 +93,31 @@ public class SitOnchairTogetReady : MonoBehaviour
         if (chairs[0].movementScript == null)
         {
             chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
-            if (chairs[0].ready == true)
-                chairs[0].movementScript.enabled = false;
+           
         }
+        if (chairs[0].ready == true & chairs[0].movementScript != null)
+            chairs[0].movementScript.enabled = false;
         if (chairs[1].movementScript == null)
         {
-      //      chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
+                  chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
         }
+        else
+        { 
+        Debug.Log("chair 1 movement script not null");
+        }
+        if (chairs[1].ready == true & chairs[1].movementScript != null)
+            chairs[1].movementScript.enabled = false;
+        //third
+        if (chairs[2].movementScript == null)
+        {
+            chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+        if (chairs[2].ready == true & chairs[2].movementScript != null)
+            chairs[2].movementScript.enabled = false;
 
         for (int i = 0; i < chairs.Count; i++)
         {
@@ -159,10 +178,10 @@ public class SitOnchairTogetReady : MonoBehaviour
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
         // CardsVote.Instance.StartVoting();
-        var cardsVote = FindFirstObjectByType<CardsVote>();
-        if (cardsVote != null)
-            cardsVote.StartVoting();
-        else
-            Debug.LogError("CardsVote instance not found in the scene.");
+        var cardsVote = FindObjectsByType<CardsVote>(FindObjectsSortMode.None);
+        foreach (var item in cardsVote)
+        {
+            item.StartVoting();
+        }
     }
 }
