@@ -1,9 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 public class CameraMovement : MonoBehaviour
 {
     public float sensitivity;
+    private float mouseX;
+    private float mouseY;
+
     private float xRotation = 0f;
+    [SerializeField] Transform tf;
 
     public void Awake()
     {
@@ -13,13 +19,16 @@ public class CameraMovement : MonoBehaviour
 
     public void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // makes it so you can look past legs and head
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // makes it so you can't look past legs and head
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.parent.Rotate(Vector3.up * mouseX);
+        tf.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        tf.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void Look(InputAction.CallbackContext ctx)
+    {
+        mouseX = ctx.ReadValue<Vector2>().x * sensitivity;
+        mouseY = ctx.ReadValue<Vector2>().y * sensitivity;
     }
 }

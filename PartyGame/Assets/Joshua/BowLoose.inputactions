@@ -1,0 +1,135 @@
+{
+    "name": "BowLoose",
+    "maps": [
+        {
+            "name": "Loose",
+            "id": "08821e92-db11-41bc-97b5-d9f320450083",
+            "actions": [
+                {
+                    "name": "loosePrep",
+                    "type": "Button",
+                    "id": "366296d2-0bce-4d3d-bc91-bb6953acd20f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Loose",
+                    "type": "Button",
+                    "id": "c5ca2a70-3b5a-4fb4-8180-4ea34ac2d828",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "toggle",
+                    "type": "Button",
+                    "id": "35eda3e8-98f9-491b-803f-cfb46fcb6faf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d025c8a7-da82-42cc-bc43-69e18744834f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse",
+                    "action": "loosePrep",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "232867ff-6af3-40de-a933-312369a642fe",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad",
+                    "action": "loosePrep",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ea09365-68de-4861-8645-05e0d561d4f1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse",
+                    "action": "Loose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1dc9427-fb12-4c9a-ba46-d4b72ab1dfb4",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad",
+                    "action": "Loose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7977085a-f300-4d7c-bdde-602f75028744",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad",
+                    "action": "toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf5b382c-e2c2-4299-b894-84fb02bde6da",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse",
+                    "action": "toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "gamepad",
+            "bindingGroup": "gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "keyboard mouse",
+            "bindingGroup": "keyboard mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

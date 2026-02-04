@@ -8,6 +8,10 @@ public class PlayerMovement_MAZE : MonoBehaviour
     [Header("Player Components")]
     public Rigidbody rb;
     public Transform tf;
+    public Mazecontroller mc;
+    public WinStatement ws;
+    public PlayerInput pi;
+
 
     [Header("Player Settings")]
     public float acceleration;
@@ -18,10 +22,14 @@ public class PlayerMovement_MAZE : MonoBehaviour
     private float sideInput;
     private float forwardInput;
 
-    // spawning
-    public SpawnPoints[] sp;
     private Random rand = new Random();
 
+    public bool done;
+    private void Awake()
+    {
+        mc = FindAnyObjectByType<Mazecontroller>();
+        ws = FindAnyObjectByType<WinStatement>();
+    }
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -36,26 +44,11 @@ public class PlayerMovement_MAZE : MonoBehaviour
         velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
     }
-    private void Awake()
-    {
-        bool done = false;
-        while (done == false)
-        {
-            int spPosition = rand.Next(0, sp.Length-1);
-            if (sp[spPosition].taken == false)
-            {
-                tf.position = sp[spPosition].tf.position;
-                done = true;
-            }
-        }
-        
-        
-    }
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        sideInput = ctx.ReadValue<Vector3>().x;
-        forwardInput = ctx.ReadValue<Vector3>().z;
+        sideInput = ctx.ReadValue<Vector2>().x;
+        forwardInput = ctx.ReadValue<Vector2>().y;
     }
     public void Escape(InputAction.CallbackContext ctx)
     {
@@ -65,8 +58,39 @@ public class PlayerMovement_MAZE : MonoBehaviour
         }
     }
 
+    public void score()
+    {
+        if(pi.playerIndex == 0)
+        {
+
+        }
+    }
     public void die()
     {
-        tf.position = new Vector3(0, 25, 0);
+        int spPosition = rand.Next(0, mc.sp.Length);
+        tf.position = mc.sp[spPosition].tf.position;
+    }
+    public int getPlayerIndex()
+    {
+        return pi.playerIndex;
+    }
+    public void scoreHelp(int points)
+    {
+        if(pi.playerIndex == 0)
+        {
+            ws.playerScore(points);
+        }
+        else if (pi.playerIndex == 1)
+        {
+            ws.player2Score(points);
+        }
+        else if (pi.playerIndex == 2)
+        {
+            ws.player3Score(points);
+        }
+        else if (pi.playerIndex == 3)
+        {
+            ws.player4Score(points);
+        }
     }
 }
