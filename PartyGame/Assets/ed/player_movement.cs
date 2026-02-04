@@ -41,22 +41,6 @@ public class player_movement : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
-    private void Update()
-    {
-        if (Input.anyKeyDown && can_shoot && in_duel && !shoot_cooldown)
-        {
-            manager.StartCoroutine(manager.shoot_phase(GetComponent<Bot_movement>()));
-            StartCoroutine(shoot_visual());
-            in_duel = false;
-            can_shoot = false;
-        }
-        if (Input.anyKeyDown && !can_shoot && in_duel && !shoot_cooldown)
-        {
-            ui.StartCoroutine(ui.dont_shoot_yet());
-            StartCoroutine(cooldown());
-        }
-    }
-
     public void give_shoot_tutorial()
     {
         ui.StartCoroutine(ui.shoot_tutorial());
@@ -93,6 +77,24 @@ public class player_movement : MonoBehaviour
         if (ctx.performed)
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void Anykey(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        if (can_shoot && in_duel && !shoot_cooldown)
+        {
+            manager.StartCoroutine(manager.shoot_phase(GetComponent<Bot_movement>()));
+            StartCoroutine(shoot_visual());
+            in_duel = false;
+            can_shoot = false;
+        }
+        if (!can_shoot && in_duel && !shoot_cooldown)
+        {
+            ui.StartCoroutine(ui.dont_shoot_yet());
+            StartCoroutine(cooldown());
         }
     }
 }

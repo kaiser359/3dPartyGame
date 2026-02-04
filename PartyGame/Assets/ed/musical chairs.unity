@@ -150,11 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force_mover: {fileID: 7213469741354340487, guid: 44a759fc6606ae246a44b484e246e12b, type: 3}
   bot: {fileID: 3118181410303080138, guid: bbeaa2498c225f141abe22156ef38b7e, type: 3}
-  bot_count: 8
+  bot_count: 9
   ui: {fileID: 1344628828}
   radio: {fileID: 1377468778}
   lightbulb: {fileID: 1659397065}
-  player: {fileID: 0}
   duel_spot1: {fileID: 2049771905}
   duel_spot2: {fileID: 488669014}
   duel_center: {fileID: 280609142}
@@ -752,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &675138105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &694715562
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,6 +1145,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &848707067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848707068}
+  - component: {fileID: 848707069}
+  - component: {fileID: 848707070}
+  m_Layer: 0
+  m_Name: listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &848707068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848707067}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1377468781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &848707069
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848707067}
+  m_Enabled: 1
+--- !u!164 &848707070
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848707067}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 8.39
+  m_DecayHFRatio: 1.39
+  m_ReflectionsLevel: -115
+  m_ReverbLevel: 985
+  m_ReverbDelay: 0.03
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 24
 --- !u!1 &906920434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 8
   m_AllowJoining: 1
   m_JoinBehavior: 2
   m_PlayerJoinedEvent:
@@ -1447,7 +1510,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_PlayerPrefab: {fileID: 1929902325264437794, guid: f70191dec4e24814c9d8bbde2da9b3de, type: 3}
-  m_SplitScreen: 0
+  m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
   m_SplitScreenRect:
@@ -1619,6 +1682,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0f58cae92380c4d98206c1f49408bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1377468781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3026228755517075221, guid: b3128e9b9c5293b4bac288ae0713c50f, type: 3}
+  m_PrefabInstance: {fileID: 4775600965279865458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1454305039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,7 +2520,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3026228755517075221, guid: b3128e9b9c5293b4bac288ae0713c50f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 848707068}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3128e9b9c5293b4bac288ae0713c50f, type: 3}
 --- !u!1660057539 &9223372036854775807
