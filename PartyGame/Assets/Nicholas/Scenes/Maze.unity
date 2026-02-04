@@ -20212,6 +20212,7 @@ GameObject:
   - component: {fileID: 1944805648}
   - component: {fileID: 1944805650}
   - component: {fileID: 1944805649}
+  - component: {fileID: 1944805651}
   m_Layer: 9
   m_Name: Curtis
   m_TagString: Untagged
@@ -25175,6 +25176,25 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!320 &1944805651
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944805641}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: cecfcd53ff2a1984bad7328007b34bcb, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -5286005178215082769, guid: cecfcd53ff2a1984bad7328007b34bcb, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1968643407
 GameObject:
   m_ObjectHideFlags: 0
