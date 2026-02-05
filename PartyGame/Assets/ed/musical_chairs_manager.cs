@@ -97,8 +97,8 @@ public class musical_chairs_manager : MonoBehaviour
             player.GetComponent<NavMeshAgent>().enabled = false;
             player.GetComponent<Bot_movement>().enabled = false;
             player.GetComponent<player_movement>().enabled = true;
-            player.GetComponent<player_movement>().topSpeed = 5;
-            player.GetComponent<player_movement>().acceleration = 40;
+            player.GetComponent<player_movement>().topSpeed = 3.5f;
+            player.GetComponent<player_movement>().acceleration = 25;
         }
 
         yield return new WaitUntil(() => FindObjectsByType<musicial_chair>(FindObjectsSortMode.None).All(item => item.taken));
@@ -239,6 +239,10 @@ public class musical_chairs_manager : MonoBehaviour
             Destroy(chairremove);
             dueler1 = null;
             dueler2 = null;
+            foreach (GameObject chair in chairs)
+            {
+                chair.GetComponent<musicial_chair>().taken = false;
+            }
             foreach (GameObject player in players)
             {
                 if (player.GetComponent<Bot_movement>().alive == true)
@@ -271,10 +275,6 @@ public class musical_chairs_manager : MonoBehaviour
                     movement.is_sitting = false;
                     movement.in_duel = false;
                 }
-            }
-            foreach (GameObject chair in chairs)
-            {
-                chair.GetComponent<musicial_chair>().taken = false;
             }
             yield return new WaitForSeconds(1f);
             StartCoroutine(round());
