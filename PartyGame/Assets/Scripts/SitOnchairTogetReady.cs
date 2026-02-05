@@ -85,7 +85,7 @@ public class SitOnchairTogetReady : MonoBehaviour
     private void Update()
     {
         // Don't re-check after we've already started the minigame
-        if (_minigameStarted) return;
+        
 
         int activePlayerCount = 0;
         int readyCount = 0;
@@ -110,7 +110,7 @@ public class SitOnchairTogetReady : MonoBehaviour
         //third
         if (chairs[2].movementScript == null)
         {
-            chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+           // chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
         }
         else
         {
@@ -118,7 +118,11 @@ public class SitOnchairTogetReady : MonoBehaviour
         }
         if (chairs[2].ready == true & chairs[2].movementScript != null)
             chairs[2].movementScript.enabled = false;
-
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+        if (_minigameStarted) return;
         for (int i = 0; i < chairs.Count; i++)
         {
             var entry = chairs[i];
@@ -141,7 +145,8 @@ public class SitOnchairTogetReady : MonoBehaviour
         }
     }
     public void UnsetFirstReadyEntry()
-    {    
+    {
+        if (_minigameStarted) return;
         for (int i = 0; i < chairs.Count; i++)
         {
             var entry = chairs[i];
@@ -163,6 +168,7 @@ public class SitOnchairTogetReady : MonoBehaviour
     }
     void UnlockEntry(ChairData entry)
     {
+
         if (entry == null) return;
         // Re-enable movement on unlock (was disabling previously)
         if (entry.movementScript != null) entry.movementScript.enabled = true;
@@ -177,11 +183,14 @@ public class SitOnchairTogetReady : MonoBehaviour
     protected virtual void StartMinigame()
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
-        // CardsVote.Instance.StartVoting();
-        var cardsVote = FindObjectsByType<CardsVote>(FindObjectsSortMode.None);
-        foreach (var item in cardsVote)
+        var cardsVote = FindAnyObjectByType<CardsVote>();
+        if (cardsVote != null)
         {
-            item.StartVoting();
+            cardsVote.StartVoting();
+        }
+        else
+        {
+            Debug.LogError("CardsVote instance not found in the scene.");
         }
     }
 }
