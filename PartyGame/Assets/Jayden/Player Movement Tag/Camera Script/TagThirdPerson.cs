@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class tagthirdpersoncamera : MonoBehaviour
 {
     public float sensitivity;
     private float xRotation = 0f;
     private float yRotation = 0f;
+    private float mouseX;
+    private float mouseY;
 
     public GameObject pivotx;
     public GameObject pivoty;
@@ -26,5 +29,11 @@ public class tagthirdpersoncamera : MonoBehaviour
 
         pivotx.transform.localRotation = Quaternion.Euler(yRotation, -xRotation, 0f);
         Player.transform.localRotation = Quaternion.Euler(0f, -xRotation, 0f);
+    }
+
+    public void Look(InputAction.CallbackContext ctx)
+    {
+        mouseX = ctx.ReadValue<Vector2>().x * sensitivity;
+        mouseY = ctx.ReadValue<Vector2>().y * sensitivity;
     }
 }

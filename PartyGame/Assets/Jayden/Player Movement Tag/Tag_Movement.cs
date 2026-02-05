@@ -183,6 +183,9 @@ public class Tag_Movement : MonoBehaviour
         Material();
 
         Debug.Log($"{gameObject.name} tagged {other.gameObject.name}. Tag transferred.");
+
+        GetComponentInChildren<TaggedTime>().remainingTime = 0;
+        GetComponentInChildren<RunnerTime>().remainingTime = 0;
     }
 
     public void Escape(InputAction.CallbackContext ctx)
