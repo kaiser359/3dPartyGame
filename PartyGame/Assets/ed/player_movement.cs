@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Random = System.Random;
 
@@ -24,6 +25,8 @@ public class player_movement : MonoBehaviour
     public mc_ui ui;
     public musical_chairs_manager manager;
     public bool shoot_cooldown = false;
+
+    public GameObject player_model;
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -32,26 +35,13 @@ public class player_movement : MonoBehaviour
             Mathf.Sqrt(sideInput);
         }
         move = tf.forward * forwardInput + tf.right * sideInput;
+        move.y = 0;
+        move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
-        Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
-        velocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = velocity;
-    }
-
-    private void Update()
-    {
-        if (Input.anyKeyDown && can_shoot && in_duel && !shoot_cooldown)
+        if (GetComponent<Bot_movement>().is_sitting == false || rb.linearVelocity.normalized != new Vector3(0, 0, 0) && GetComponent<Bot_movement>().alive)
         {
-            manager.StartCoroutine(manager.shoot_phase(GetComponent<Bot_movement>()));
-            StartCoroutine(shoot_visual());
-            in_duel = false;
-            can_shoot = false;
-        }
-        if (Input.anyKeyDown && !can_shoot && in_duel && !shoot_cooldown)
-        {
-            ui.StartCoroutine(ui.dont_shoot_yet());
-            StartCoroutine(cooldown());
+            player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         }
     }
 
@@ -91,6 +81,24 @@ public class player_movement : MonoBehaviour
         if (ctx.performed)
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void Anykey(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        if (can_shoot && in_duel && !shoot_cooldown)
+        {
+            manager.StartCoroutine(manager.shoot_phase(GetComponent<Bot_movement>()));
+            StartCoroutine(shoot_visual());
+            in_duel = false;
+            can_shoot = false;
+        }
+        if (!can_shoot && in_duel && !shoot_cooldown)
+        {
+            ui.StartCoroutine(ui.dont_shoot_yet());
+            StartCoroutine(cooldown());
         }
     }
 }

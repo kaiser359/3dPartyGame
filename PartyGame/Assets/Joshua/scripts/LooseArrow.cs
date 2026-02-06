@@ -1,14 +1,10 @@
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics.Tracing;
+
 
 public class LooseArrow : MonoBehaviour
 {
@@ -27,6 +23,8 @@ public class LooseArrow : MonoBehaviour
     public WinStatement winStatement;
 
     public PlayerInput playerInput;
+
+    private static bool pointsAwarded = false;
 
     public void Start()
     {
@@ -80,7 +78,16 @@ public class LooseArrow : MonoBehaviour
     }
     public void ArcheryEnd()
     {
-        
+        // Prevent duplicate awarding across multiple instances/calls
+        if (pointsAwarded)
+        {
+            Debug.Log("ArcheryEnd already processed. Skipping duplicate awarding.");
+            return;
+        }
+
+        // Mark as awarded so subsequent calls do nothing
+        pointsAwarded = true;
+
         BowSway.Sway = BowSway.Direction.None;
        
         Debug.Log("Archery Ended");
@@ -128,6 +135,7 @@ public class LooseArrow : MonoBehaviour
         }
 
         Destroy(a, 0.1f);
+        SceneManager.LoadScene("SampleScene");
     }
 }
 
