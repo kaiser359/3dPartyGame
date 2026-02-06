@@ -15,7 +15,11 @@ public class musicial_chair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (taken && player_model != null)
+        {
+            player_model.transform.localEulerAngles = transform.parent.transform.localEulerAngles + new Vector3(0, 0, 0);
+            print("totally rotating");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

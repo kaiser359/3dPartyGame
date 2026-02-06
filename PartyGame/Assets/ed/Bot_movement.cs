@@ -34,6 +34,7 @@ public class Bot_movement : MonoBehaviour
             if (forcing == true)
             {
                 agent.destination = goal.transform.position;
+                player_model.transform.forward = agent.velocity.normalized;
             }
             else
             {
@@ -51,10 +52,13 @@ public class Bot_movement : MonoBehaviour
                     }
                 }
             }
-
+            print(agent.velocity.normalized);
             if (!is_sitting || agent.velocity.normalized != new Vector3(0, 0, 0))
             {
-                player_model.transform.forward = agent.velocity.normalized;
+                if (alive)
+                {
+                    player_model.transform.forward = agent.velocity.normalized;
+                }
             }
             //Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), 5);
 
@@ -89,6 +93,11 @@ public class Bot_movement : MonoBehaviour
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         transform.position = transform.position + new Vector3(Random.Range(-3, 3), -1, (Random.Range(-3, 3)));
-        transform.localEulerAngles = transform.localEulerAngles + new Vector3(-90, Random.Range(-180, 180), 0);
+        player_model.transform.localEulerAngles = Vector3.zero;
+        transform.localEulerAngles = transform.localEulerAngles + new Vector3(-90, 0, Random.Range(-180, 180));
+        if (GetComponent<player_movement>() != null)
+        {
+            GetComponent<player_movement>().pivoty.transform.Rotate(-45, 0, 0);
+        }
     }
 }
