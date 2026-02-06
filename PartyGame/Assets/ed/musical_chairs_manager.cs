@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using System.Linq;
+using UnityEngine.InputSystem;
 public class musical_chairs_manager : MonoBehaviour
 {
 
     public GameObject force_mover;
     public GameObject bot;
-    public int bot_count = 7;
+    public int bot_count = 8;
     public mc_ui ui;
     public radio radio;
     public musical_chairs_light lightbulb;
-    public GameObject player;
 
     public GameObject duel_spot1;
     public GameObject duel_spot2;
@@ -24,10 +24,34 @@ public class musical_chairs_manager : MonoBehaviour
     public bool shooting_phase = false;
 
     public List<Bot_movement> agents = new List<Bot_movement>();
+    public List<GameObject> players = new List<GameObject>();
     public List<GameObject> chairs = new List<GameObject>();
+    public PlayerInputManager inputManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        for (int i = 0; i < InputSystem.devices.Count; ++i)
+        {
+            var device = InputSystem.devices[i];
+
+            if (device.displayName == "Keyboard" || device.displayName == "Xbox Controller")
+            {
+                bot_count--;
+                var newPlayer = inputManager.JoinPlayer(pairWithDevice: device);
+                int index = newPlayer.playerIndex;
+                GameObject new_player_force_mover = Instantiate(force_mover);
+                GameObject player_mover = new_player_force_mover.GetComponent<forcemove>().mover;
+                new_player_force_mover.transform.Rotate(0, Random.Range(0, 360), 0);
+                newPlayer.GetComponent<Bot_movement>().goal = player_mover;
+                newPlayer.GetComponent<Bot_movement>().force_mover = player_mover;
+                newPlayer.GetComponent<Bot_movement>().game_manager = this;
+                newPlayer.GetComponent<player_movement>().manager = this;
+                newPlayer.transform.position = player_mover.transform.position;
+                players.Add(newPlayer.gameObject);
+            }
+        }
+
         for (int i = 0; i < bot_count; i++)
         {
             GameObject new_force_mover = Instantiate(force_mover);
@@ -40,21 +64,14 @@ public class musical_chairs_manager : MonoBehaviour
             new_bot.GetComponent<Bot_movement>().game_manager = this;
             agents.Add(new_bot.GetComponent<Bot_movement>());
         }
-        GameObject new_player_force_mover = Instantiate(force_mover);
-        GameObject player_mover = new_player_force_mover.GetComponent<forcemove>().mover;
-        new_player_force_mover.transform.Rotate(0, Random.Range(0, 360), 0);
-        player.GetComponent<Bot_movement>().goal = player_mover;
-        player.GetComponent<Bot_movement>().force_mover = player_mover;
-        player.GetComponent<Bot_movement>().game_manager = this;
-        player.transform.position = player_mover.transform.position;
-        agents.Add(player.GetComponent<Bot_movement>());
-        StartCoroutine(tutorial());
+
 
         GameObject[] chairs2 = GameObject.FindGameObjectsWithTag("chair");
         foreach (GameObject chair in chairs2)
         {
             chairs.Add(chair);
         }
+        StartCoroutine(tutorial());
     }
 
     public IEnumerator tutorial()
@@ -75,14 +92,13 @@ public class musical_chairs_manager : MonoBehaviour
         {
             movement.forcing = false;
         }
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
             player.GetComponent<NavMeshAgent>().enabled = false;
             player.GetComponent<Bot_movement>().enabled = false;
             player.GetComponent<player_movement>().enabled = true;
-            player.GetComponent<player_movement>().topSpeed = 5;
-            player.GetComponent<player_movement>().acceleration = 40;
+            player.GetComponent<player_movement>().topSpeed = 3.5f;
+            player.GetComponent<player_movement>().acceleration = 25;
         }
 
         yield return new WaitUntil(() => FindObjectsByType<musicial_chair>(FindObjectsSortMode.None).All(item => item.taken));
@@ -105,6 +121,27 @@ public class musical_chairs_manager : MonoBehaviour
                 }
             }
         }
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<Bot_movement>().is_sitting == false && player.GetComponent<Bot_movement>().alive == true)
+            {
+                if (dueler1 == null)
+                {
+                    dueler1 = player.GetComponent<Bot_movement>();
+                    dueler1.GetComponent<player_movement>().in_duel = true;
+                    dueler1.GetComponent<Bot_movement>().in_duel = true;
+                    dueler1.GetComponent<Bot_movement>().forcing = true;
+                }
+                else if (dueler2 == null)
+                {
+                    dueler2 = player.GetComponent<Bot_movement>();
+                    dueler2.GetComponent<player_movement>().in_duel = true;
+                    dueler2.GetComponent<Bot_movement>().in_duel = true;
+                    dueler2.GetComponent<Bot_movement>().forcing = true;
+                }
+            }
+        }
+
         duel_center.transform.Rotate(0, Random.Range(0, 360), 0);
         if (dueler1.GetComponent<player_movement>() != null)
         {
@@ -175,8 +212,8 @@ public class musical_chairs_manager : MonoBehaviour
         lightbulb.rotz += 2f;
         lightbulb.speedx += 0.2f;
         lightbulb.speedz += 0.4f;
-        lightbulb.min_intense -= 3f;
-        lightbulb.max_intense += 3f;
+        lightbulb.min_intense -= 8f;
+        lightbulb.max_intense += 8f;
 }
 
     public IEnumerator shoot_phase(Bot_movement suriving_dueler)
@@ -206,6 +243,25 @@ public class musical_chairs_manager : MonoBehaviour
             {
                 chair.GetComponent<musicial_chair>().taken = false;
             }
+            foreach (GameObject player in players)
+            {
+                if (player.GetComponent<Bot_movement>().alive == true)
+                {
+                    player.GetComponent<NavMeshAgent>().enabled = true;
+                    player.GetComponent<Bot_movement>().enabled = true;
+                    player.GetComponent<player_movement>().topSpeed = 0;
+                    player.GetComponent<player_movement>().acceleration = 0;
+                    player.GetComponent<player_movement>().enabled = false;
+                    player.GetComponent<Bot_movement>().goal = player.GetComponent<Bot_movement>().force_mover;
+                    player.gameObject.transform.position = player.GetComponent<Bot_movement>().goal.transform.position;
+                    player.GetComponent<Bot_movement>().forcing = true;
+                    player.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                    player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                    player.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                    player.GetComponent<Bot_movement>().is_sitting = false;
+                    player.GetComponent<Bot_movement>().in_duel = false;
+                }
+            }
             foreach (Bot_movement movement in agents)
             {
                 if (movement.alive == true)
@@ -218,18 +274,6 @@ public class musical_chairs_manager : MonoBehaviour
                     movement.gameObject.GetComponent<NavMeshAgent>().enabled = true;
                     movement.is_sitting = false;
                     movement.in_duel = false;
-                }
-            }
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject player in players)
-            {
-                if (player.GetComponent<Bot_movement>().alive == true)
-                {
-                    player.GetComponent<NavMeshAgent>().enabled = true;
-                    player.GetComponent<Bot_movement>().enabled = true;
-                    player.GetComponent<player_movement>().topSpeed = 0;
-                    player.GetComponent<player_movement>().acceleration = 0;
-                    player.GetComponent<player_movement>().enabled = false;
                 }
             }
             yield return new WaitForSeconds(1f);

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameMenu : MonoBehaviour
+public class GameMenu_stop_pushing_with_errors_bro : MonoBehaviour
 {
     private bool _isPaused;
 
