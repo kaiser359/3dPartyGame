@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using System;
 using Random = System.Random;
 
-public class player_movement : MonoBehaviour
+public class player_movement2 : MonoBehaviour
 {
     [Header("Player Components")]
     public Rigidbody rb;
