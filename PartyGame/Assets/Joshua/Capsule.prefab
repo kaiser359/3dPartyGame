@@ -1217,6 +1217,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6751674695164033825, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.3999634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035596701842661130, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.3999634
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
