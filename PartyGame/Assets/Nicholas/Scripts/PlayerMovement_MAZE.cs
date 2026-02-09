@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System;
 using Random = System.Random;
 
+
 public class PlayerMovement_MAZE : MonoBehaviour
 {
     [Header("Player Components")]
