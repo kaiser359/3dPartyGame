@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Random = System.Random;
 
-public class player_movement2 : MonoBehaviour
+public class player_movement : MonoBehaviour
 {
     [Header("Player Components")]
     public Rigidbody rb;
@@ -41,10 +41,14 @@ public class player_movement2 : MonoBehaviour
         move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
-        Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
-        velocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = velocity;
-        
+        if (GetComponent<Bot_movement>().is_sitting == false || rb.linearVelocity.normalized != new Vector3(0, 0, 0))
+        {
+            if (GetComponent<Bot_movement>().alive)
+            {
+                player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+                print("totally moving");
+            }
+        }
     }
 
     public void give_shoot_tutorial()
