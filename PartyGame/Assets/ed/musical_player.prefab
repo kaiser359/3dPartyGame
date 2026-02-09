@@ -430,6 +430,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   shoot_cooldown: 0
   player_model: {fileID: 3443169133000431799}
+  pivoty: {fileID: 9109540833619699567}
 --- !u!114 &6555278159432178277
 MonoBehaviour:
   m_ObjectHideFlags: 0

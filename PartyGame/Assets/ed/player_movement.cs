@@ -27,6 +27,8 @@ public class player_movement : MonoBehaviour
     public bool shoot_cooldown = false;
 
     public GameObject player_model;
+
+    public GameObject pivoty;
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -39,9 +41,13 @@ public class player_movement : MonoBehaviour
         move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
-        if (GetComponent<Bot_movement>().is_sitting == false || rb.linearVelocity.normalized != new Vector3(0, 0, 0) && GetComponent<Bot_movement>().alive)
+        if (GetComponent<Bot_movement>().is_sitting == false || rb.linearVelocity.normalized != new Vector3(0, 0, 0))
         {
-            player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+            if (GetComponent<Bot_movement>().alive)
+            {
+                player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+                print("totally moving");
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TabController : MonoBehaviour
@@ -9,6 +10,7 @@ public class TabController : MonoBehaviour
     // Hex strings (include leading '#')
     private readonly string inactiveHex = "#5204B9";
     private readonly string activeHex = "#621BBF";
+    
 
     void Start()
     {
@@ -29,5 +31,14 @@ public class TabController : MonoBehaviour
         Color activeCol;
         ColorUtility.TryParseHtmlString(activeHex, out activeCol);
         tabImages[tabNO].color = activeCol;
+    }
+    public void MenuLeft(InputAction.CallbackContext context)
+    {
+        ActivateTab(1);
+    }
+
+    public void MenuRight(InputAction.CallbackContext context)
+    {
+        ActivateTab(0);
     }
 }

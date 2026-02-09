@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -11,10 +12,19 @@ public class MenuController : MonoBehaviour
     }
 
     // Update is called once per frame
-   
-         public void Toggle(InputAction.CallbackContext context)
-    {
-            menuCanvas.SetActive(!menuCanvas.activeSelf);
 
+    public void Toggle(InputAction.CallbackContext context)
+    {
+        menuCanvas.SetActive(!menuCanvas.activeSelf);
+
+    }
+    public void QuickQuit(InputAction.CallbackContext context)
+    {
+        if (menuCanvas.activeSelf)
+        {
+            SceneManager.LoadScene("SampleScene");
+           menuCanvas.SetActive(false);
+           
         }
     }
+}
