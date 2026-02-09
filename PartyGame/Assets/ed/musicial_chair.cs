@@ -19,6 +19,10 @@ public class musicial_chair : MonoBehaviour
         {
             player_model.transform.localEulerAngles = transform.parent.transform.localEulerAngles + new Vector3(0, 0, 0);
             print("totally rotating");
+            if (player_model.transform.GetComponentInParent<player_movement>())
+            {
+                player_model.transform.parent.transform.localEulerAngles = new(0, 90, 0);
+            }
         }
     }
 

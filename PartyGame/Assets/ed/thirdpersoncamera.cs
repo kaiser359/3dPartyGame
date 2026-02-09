@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class thirdpersoncamera : MonoBehaviour
 {
     public float sensitivity;
+
+    private float mouseX;
+    private float mouseY;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
@@ -16,13 +20,16 @@ public class thirdpersoncamera : MonoBehaviour
 
     public void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-
         xRotation -= mouseX;
         yRotation -= mouseY;
         yRotation = Mathf.Clamp(yRotation, -20f, 89f);
 
         pivotx.transform.localRotation = Quaternion.Euler(yRotation, -xRotation, 0f);
+    }
+
+    public void Turn(InputAction.CallbackContext ctx)
+    {
+        mouseX = ctx.ReadValue<Vector2>().x * sensitivity;
+        mouseY = ctx.ReadValue<Vector2>().y * sensitivity;
     }
 }
