@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
-using System;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [System.Serializable]
 public class ChairData
@@ -83,11 +85,44 @@ public class SitOnchairTogetReady : MonoBehaviour
     private void Update()
     {
         // Don't re-check after we've already started the minigame
-        if (_minigameStarted) return;
+        
 
         int activePlayerCount = 0;
         int readyCount = 0;
 
+        if (chairs[0].movementScript == null)
+        {
+            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+           
+        }
+        if (chairs[0].ready == true & chairs[0].movementScript != null)
+            chairs[0].movementScript.enabled = false;
+        if (chairs[1].movementScript == null)
+        {
+                  chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
+        }
+        else
+        { 
+        Debug.Log("chair 1 movement script not null");
+        }
+        if (chairs[1].ready == true & chairs[1].movementScript != null)
+            chairs[1].movementScript.enabled = false;
+        //third
+        if (chairs[2].movementScript == null)
+        {
+           // chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+        if (chairs[2].ready == true & chairs[2].movementScript != null)
+            chairs[2].movementScript.enabled = false;
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+        if (_minigameStarted) return;
         for (int i = 0; i < chairs.Count; i++)
         {
             var entry = chairs[i];
@@ -110,7 +145,8 @@ public class SitOnchairTogetReady : MonoBehaviour
         }
     }
     public void UnsetFirstReadyEntry()
-    {    
+    {
+        if (_minigameStarted) return;
         for (int i = 0; i < chairs.Count; i++)
         {
             var entry = chairs[i];
@@ -122,7 +158,9 @@ public class SitOnchairTogetReady : MonoBehaviour
 
                 if (entry.player != null && entry.chair != null)
                     entry.player.transform.position = entry.chair.transform.position + entry.chair.transform.forward * 1.0f;
-                entry.movementScript.enabled = true;
+                // guard against null movementScript to avoid NRE
+                if (entry.movementScript != null)
+                    entry.movementScript.enabled = true;
 
                 break;
             }
@@ -130,8 +168,10 @@ public class SitOnchairTogetReady : MonoBehaviour
     }
     void UnlockEntry(ChairData entry)
     {
+
         if (entry == null) return;
-        if (entry.movementScript != null) entry.movementScript.enabled = false;
+        // Re-enable movement on unlock (was disabling previously)
+        if (entry.movementScript != null) entry.movementScript.enabled = true;
         if (entry.playerRb != null)
         {
             entry.playerRb.constraints = entry.originalConstraints;
@@ -143,5 +183,14 @@ public class SitOnchairTogetReady : MonoBehaviour
     protected virtual void StartMinigame()
     {
         Debug.Log("All players are ready. StartMinigame() placeholder called. MWAHAHAHHHAHHAHAHAHAHAAAHHAHAHAHAHAHA");
+        var cardsVote = FindAnyObjectByType<CardsVote>();
+        if (cardsVote != null)
+        {
+            cardsVote.StartVoting();
+        }
+        else
+        {
+            Debug.LogError("CardsVote instance not found in the scene.");
+        }
     }
 }

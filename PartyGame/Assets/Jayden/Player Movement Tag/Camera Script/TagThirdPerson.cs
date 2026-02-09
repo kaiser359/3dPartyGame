@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class tagthirdpersoncamera : MonoBehaviour
+public class tagthirdpersoncamera_stop_pushing_with_errors_bro : MonoBehaviour
 {
     public float sensitivity;
     private float xRotation = 0f;

@@ -8,6 +8,7 @@ TagManager:
   - arrow
   - chair
   - Tagged
+  - bot
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Player
   - Tagger
   - Ground
-  - 
+  - Curtis
   - 
   - 
   - 

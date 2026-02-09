@@ -12,6 +12,8 @@ public class radio : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void playsong()
     {
+        current_song.pitch = 1;
+        current_song.volume = 1;
         current_song.clip = music[Random.Range(0, music.Count)];
         current_song.Play();
     }
@@ -30,14 +32,14 @@ public class radio : MonoBehaviour
         {
             current_song.pitch = Mathf.Lerp(1, 0, timeElapsed / 2);
             timeElapsed += Time.deltaTime;
-            yield return null; // Wait until the next frame
+            yield return null;
         }
         current_song.pitch = 0f;
         while (timeElapsed < 4)
         {
             current_song.volume = Mathf.Lerp(1, 0, timeElapsed / 4);
             timeElapsed += Time.deltaTime;
-            yield return null; // Wait until the next frame
+            yield return null;
         }
         current_song.Stop();
     }
