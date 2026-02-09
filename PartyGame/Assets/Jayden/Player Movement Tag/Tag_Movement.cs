@@ -62,6 +62,7 @@ public class Tag_Movement : MonoBehaviour
 
         // Ensure the correct material and outline visibility is applied at start based on role
         Material();
+        DisableEnablePlayerMovement.instance.EnablePlayerMovement();
     }
 
     private void FixedUpdate()
