@@ -8,6 +8,7 @@ TagManager:
   - arrow
   - chair
   - Tagged
+  - bot
   layers:
   - Default
   - TransparentFX
