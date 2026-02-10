@@ -41,7 +41,8 @@ public class player_movement : MonoBehaviour
         move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
-        if (GetComponent<Bot_movement>().is_sitting == false || rb.linearVelocity.normalized != new Vector3(0, 0, 0))
+        print(rb.linearVelocity.sqrMagnitude);
+        if (GetComponent<Bot_movement>().is_sitting == false && rb.linearVelocity.sqrMagnitude > 0.1f)
         {
             if (GetComponent<Bot_movement>().alive)
             {

@@ -229,7 +229,7 @@ public class musical_chairs_manager : MonoBehaviour
                 dueler1.Die();
             }
             shooting_phase = false;
-            yield return new WaitForSeconds(Random.Range(2f, 3f));
+            yield return new WaitForSeconds(Random.Range(2f, 4.5f));
             lightbulb.lightson();
             yield return new WaitForSeconds(3f);
             suriving_dueler.gun.SetActive(false);

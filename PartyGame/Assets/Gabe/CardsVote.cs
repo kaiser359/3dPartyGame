@@ -93,9 +93,7 @@ public class CardsVote : MonoBehaviour
             cardInstances.Add(inst);
         }
 
-        // Do not force-select any button via MultiplayerEventSystem since voting uses input actions now.
 
-        // subscribe to all PlayerInput players
         SubscribeToPlayerInputs();
 
         // start timer
@@ -114,8 +112,7 @@ public class CardsVote : MonoBehaviour
         ClearExistingCards();
     }
 
-    // Public method to register a vote from anywhere (e.g., player controllers)
-    // playerIndex should be the PlayerInput.playerIndex for that player
+
     public void RegisterVote(int playerIndex, int optionIndex)
     {
         if (!isVotingActive) return;

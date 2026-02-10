@@ -49,23 +49,7 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
 
     // Grounded state
     private bool isGrounded = false;
-
-    [Header(" Ranged Tagging Settings")]
-    public float radius = 5f;
-    public string targetTag = "Player";
-    public bool useUnityTag = false;
-    public LayerMask layerMask = ~0;
-    public float checkInterval = 0.2f;
-    // New controls:
-    public bool enablePeriodicRangedTag = false; // set true to enable automatic periodic tagging
-    public bool requireLineOfSight = true;       // optional: require clear LOS before tagging
-
-    float nextCheck = 0f;
-
-    [Header("Click Tag Settings")]
-    // Maximum distance for left-click ray tagging
-    public float clickMaxDistance = 20f;
-
+    
     [Header("Tagging Immunity Settings")]
     // Short immunity window after being tagged to prevent instant re-tagging
     public float postTagImmunity = 0.5f;
@@ -78,16 +62,7 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
 
         // Ensure the correct material and outline visibility is applied at start based on role
         Material();
-    }
-
-    private void Update()
-    {
-        // Periodic ranged tag checks only when this player is the tagger
-        if (isTagger && Time.time >= nextCheck)
-        {
-            nextCheck = Time.time + Mathf.Max(0.01f, checkInterval);
-            TryRangedTag();
-        }
+        DisableEnablePlayerMovement.instance.EnablePlayerMovement();
     }
 
     private void FixedUpdate()
@@ -105,9 +80,6 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
             isGrounded = Physics.Raycast(tf.position, Vector3.down, 1.1f);
         }
 
-        // Prevent diagonal inputs from exceeding magnitude 1
-        if (move.sqrMagnitude > 1f)
-            move = move.normalized;
 
         // While dashing, skip regular acceleration to preserve dash impulse feel
         if (!isDashing)
@@ -132,8 +104,8 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
     // Move action expects a Vector2 (e.g. from WASD or left stick)
     public void Move(InputAction.CallbackContext ctx)
     {
-        Vector2 v = ctx.ReadValue<Vector2>();
-        print(v);
+        //Vector2 v = ctx.ReadValue<Vector2>();
+        ////print(v);
         sideInput = ctx.ReadValue<Vector2>().x;
         forwardInput = ctx.ReadValue<Vector2>().y;
     }
@@ -176,22 +148,6 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
         canDash = true;
     }
 
-    // New: Left mouse click tag action.
-    // Bind this to a left-click InputAction (performed) in the Input System.
-    // On click, use the same ranged-tagging logic as the periodic check.
-    public void TagClick(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed)
-            return;
-
-        // only the current tagger can tag via click
-        if (!isTagger)
-            return;
-
-        // Use the existing ranged tag logic so clicking triggers nearest-in-radius tagging
-        TryRangedTag();
-    }
-
     // When this collider hits another player, transfer the tag if applicable
     private void OnCollisionEnter(Collision collision)
     {
@@ -228,65 +184,9 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
         Material();
 
         Debug.Log($"{gameObject.name} tagged {other.gameObject.name}. Tag transferred.");
-    }
 
-    // Periodic ranged tag check - finds nearest valid target and transfers tag
-    private void TryRangedTag()
-    {
-        // Only the current tagger should perform ranged tagging.
-        if (!isTagger)
-            return;
-
-        if (tf == null)
-            return;
-
-        // Collect nearby colliders within radius using provided layerMask.
-        RaycastHit[] hits = Physics.SphereCastAll(tf.position, radius, Vector3.zero, radius, layerMask);
-        if (hits.Length == 0)
-            return;
-
-        float bestDistSq = float.MaxValue;
-        Tag_Movement bestCandidate = null;
-
-        foreach (var hit in hits)
-        {
-            // Try to get Tag_Movement from the collider or its parents (handles nested collider setups).
-            Tag_Movement other = hit.collider.GetComponentInParent<Tag_Movement>();
-            if (other == null)
-                continue;
-
-            // Skip ourselves.
-            if (other == this)
-                continue;
-
-            // Only tag non-taggers.
-            if (other.isTagger)
-                continue;
-
-            // If configured, require the Unity tag to match.
-            if (useUnityTag && !other.gameObject.CompareTag(targetTag))
-                continue;
-
-            // Respect the post-tag immunity window on the target.
-            if (Time.time < other.lastTaggedTime + postTagImmunity)
-                continue;
-
-            // Compute squared distance to choose nearest target (avoids sqrt).
-            Vector3 otherPos = (other.tf != null) ? other.tf.position : other.transform.position;
-            float distSq = (otherPos - tf.position).sqrMagnitude;
-
-            if (distSq < bestDistSq)
-            {
-                bestDistSq = distSq;
-                bestCandidate = other;
-            }
-        }
-
-        // If we found a valid nearest candidate, transfer the tag.
-        if (bestCandidate != null)
-        {
-            TransferTag(bestCandidate);
-        }
+        GetComponentInChildren<TaggedTime>().remainingTime = 0;
+        GetComponentInChildren<RunnerTime>().remainingTime = 0;
     }
 
     public void Escape(InputAction.CallbackContext ctx)
@@ -323,11 +223,6 @@ public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
 
-        // Draw ranged tag radius for the tagger in the editor
-        if (tf != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(tf.position, radius);
-        }
+        
     }
 }
