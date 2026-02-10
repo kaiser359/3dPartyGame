@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Random = System.Random;
 
@@ -24,6 +25,10 @@ public class player_movement : MonoBehaviour
     public mc_ui ui;
     public musical_chairs_manager manager;
     public bool shoot_cooldown = false;
+
+    public GameObject player_model;
+
+    public GameObject pivoty;
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -36,9 +41,15 @@ public class player_movement : MonoBehaviour
         move.Normalize();
         Vector3 newVelocity = new Vector3(move.x * acceleration, 0, move.z * acceleration);
         rb.AddForce(newVelocity);
-        Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), topSpeed);
-        velocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = velocity;
+        print(rb.linearVelocity.sqrMagnitude);
+        if (GetComponent<Bot_movement>().is_sitting == false && rb.linearVelocity.sqrMagnitude > 0.1f)
+        {
+            if (GetComponent<Bot_movement>().alive)
+            {
+                player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+                print("totally moving");
+            }
+        }
     }
 
     public void give_shoot_tutorial()

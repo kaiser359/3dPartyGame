@@ -16,10 +16,14 @@ public class Bot_movement : MonoBehaviour
     public musical_chairs_manager game_manager;
     public bool alive = true;
 
+    public GameObject player_model;
+    public GameObject chair;
+
+    public Rigidbody rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        agent.updateRotation = false;
     }
 
     // Update is called once per frame
@@ -47,6 +51,18 @@ public class Bot_movement : MonoBehaviour
                     }
                 }
             }
+            if (!is_sitting && agent.velocity.normalized != new Vector3(0, 0, 0))
+            {
+                player_model.transform.forward = agent.velocity.normalized;
+            }
+            //Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), 5);
+
+            //Quaternion targetRotation = velocity == Vector3.zero ? transform.
+            //rotation : Quaternion.LookRotation(velocity.normalized, Vector3.up);
+            //if (velocity != Vector3.zero)
+            //{
+            //    player_model.transform.rotation = Quaternion.RotateTowards(player_model.transform.rotation, targetRotation, Time.deltaTime * 400);
+            //}
         }
     }
 
@@ -72,6 +88,11 @@ public class Bot_movement : MonoBehaviour
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         transform.position = transform.position + new Vector3(Random.Range(-3, 3), -1, (Random.Range(-3, 3)));
-        transform.localEulerAngles = transform.localEulerAngles + new Vector3(0, Random.Range(-180, 180), 90);
+        player_model.transform.localEulerAngles = Vector3.zero;
+        transform.localEulerAngles = transform.localEulerAngles + new Vector3(-90, 0, Random.Range(-180, 180));
+        if (GetComponent<player_movement>() != null)
+        {
+            GetComponent<player_movement>().pivoty.transform.Rotate(-45, 0, 0);
+        }
     }
 }
