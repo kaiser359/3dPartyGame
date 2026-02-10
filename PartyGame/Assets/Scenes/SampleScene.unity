@@ -11322,6 +11322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerinput: {fileID: 778971797}
+  playerPrefab: {fileID: 0}
+  playerPrefav2: {fileID: 0}
 --- !u!33 &778971799
 MeshFilter:
   m_ObjectHideFlags: 0
