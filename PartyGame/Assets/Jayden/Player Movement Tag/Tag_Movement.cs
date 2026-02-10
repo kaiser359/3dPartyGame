@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Tag_Movement_stop_pushing_with_errors_bro : MonoBehaviour
+public class Tag_Movement1 : MonoBehaviour
 {
 
     [Header("Player Components")]
