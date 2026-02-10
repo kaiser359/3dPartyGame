@@ -354,8 +354,6 @@ MonoBehaviour:
   - Archery
   - musical chairs
   - Tag Game (test)
-  - Hammer Fight
-  - Catch the Duende
   sceneIcons:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
