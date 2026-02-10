@@ -110,7 +110,7 @@ public class SitOnchairTogetReady : MonoBehaviour
         //third
         if (chairs[2].movementScript == null)
         {
-           // chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+            chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
         }
         else
         {
@@ -122,6 +122,16 @@ public class SitOnchairTogetReady : MonoBehaviour
         {
             Debug.Log("chair 2 movement script not null");
         }
+        if (chairs[3].movementScript == null)
+        {
+            chairs[3].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+        if (chairs[3].ready == true & chairs[2].movementScript != null)
+            chairs[3].movementScript.enabled = false;
         if (_minigameStarted) return;
         for (int i = 0; i < chairs.Count; i++)
         {

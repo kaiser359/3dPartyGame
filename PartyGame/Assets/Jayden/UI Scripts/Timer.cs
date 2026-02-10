@@ -27,6 +27,7 @@ public class Timer : MonoBehaviour
             remainingTime = 0;
             //GameOver();
             timerText.color = Color.red;
+            Time.timeScale = 0f;
             
             if (remainingTime == 0)
             {

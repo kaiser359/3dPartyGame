@@ -4,6 +4,8 @@ public class DisableEnablePlayerMovement : MonoBehaviour
 {
     public static DisableEnablePlayerMovement instance;
 
+    private Tag_Movement1[] gameObjects;
+    public Timer gameObjectz;
     public Tag_Movement1[] gameObjects;
     public Timer[] gameObjectz;
     void Start()
