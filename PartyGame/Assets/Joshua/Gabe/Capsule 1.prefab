@@ -313,9 +313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boo: {fileID: 0}
   lastMoveDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
+  moveSpeed: 18
   mouseSensitivity: 1
-  gamepadSensitivity: 3
+  gamepadSensitivity: 100
   mouseScale: 1
   playerBody: {fileID: 8558247825053306455}
   cameraTransform: {fileID: 4981086841643255727}
