@@ -49,7 +49,7 @@ public class Tag_Movement1 : MonoBehaviour
 
     // Grounded state
     private bool isGrounded = false;
-    
+
     [Header("Tagging Immunity Settings")]
     // Short immunity window after being tagged to prevent instant re-tagging
     public float postTagImmunity = 0.5f;
@@ -62,7 +62,7 @@ public class Tag_Movement1 : MonoBehaviour
 
         // Ensure the correct material and outline visibility is applied at start based on role
         Material();
-        DisableEnablePlayerMovement.instance.EnablePlayerMovement();
+        //DisableEnablePlayerMovement.instance.EnablePlayerMovement();
     }
 
     private void FixedUpdate()
@@ -155,7 +155,7 @@ public class Tag_Movement1 : MonoBehaviour
         if (!isTagger)
             return;
 
-        if (collision.gameObject.TryGetComponent<Tag_Movement>(out var other))
+        if (collision.gameObject.TryGetComponent<Tag_Movement1>(out var other))
         {
             // If the other player is not the tagger, transfer the tag
             if (!other.isTagger)
@@ -170,7 +170,7 @@ public class Tag_Movement1 : MonoBehaviour
     }
 
     // Swap tag status: this player loses tag, other gains it
-    private void TransferTag(Tag_Movement other)
+    private void TransferTag(Tag_Movement1 other)
     {
         other.isTagger = true;
         isTagger = false;
@@ -223,6 +223,6 @@ public class Tag_Movement1 : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
 
-        
+
     }
 }

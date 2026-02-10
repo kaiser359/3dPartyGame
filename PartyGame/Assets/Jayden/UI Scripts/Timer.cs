@@ -28,6 +28,11 @@ public class Timer : MonoBehaviour
             //GameOver();
             timerText.color = Color.red;
             Time.timeScale = 0f;
+            
+            if (remainingTime == 0)
+            {
+                DisableEnablePlayerMovement.instance.DisablePlayerMovement();
+            }
         }
 
 

@@ -1181,8 +1181,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.049988, y: 198.13751}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 380}
+  m_SizeDelta: {x: 967.0509, y: 378.7373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807419246
 MonoBehaviour:
@@ -1231,8 +1231,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 142
+  m_fontSizeBase: 142
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -11.740425, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1918,6 +1918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1705603822}
   - component: {fileID: 1705603821}
+  - component: {fileID: 1705603823}
   m_Layer: 0
   m_Name: TagManager
   m_TagString: Untagged
@@ -1932,7 +1933,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705603820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03e9f3f8c0e746241b9f81eabc7c4774, type: 3}
   m_Name: 
@@ -1958,6 +1959,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1705603823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705603820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1f129f9c8469c44b36645e0da9fb65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: -1
+  spawnPoints:
+  - {fileID: 2050137250}
+  - {fileID: 543265555}
+  - {fileID: 1960147576}
+  - {fileID: 1863924561}
+  playerPrefab: {fileID: 4152012939197904227, guid: 8b74c5f855dbfb94ebc3be69ff360bdc, type: 3}
+  spawnOnStart: 1
 --- !u!1 &1740730397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,6 +2231,7 @@ GameObject:
   - component: {fileID: 1919829583}
   m_Layer: 5
   m_Name: 3...2...1...Go! (Canvas)
+  m_Name: 3...2...1...Go!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2633,26 +2655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183b6e9b607044d4d914e68a0248e58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1965627335}
-  tf: {fileID: 1965627339}
-  acceleration: 10
-  topSpeed: 5
-  isTagger: 0
-  taggerSpeedMultiplier: 1.2
-  dashForce: 10
-  dashDuration: 0.15
-  dashCooldown: 1
-  jumpForce: 5
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
-  runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
-  obj: {fileID: 1024364902}
-  postTagImmunity: 0.5
-  lastTaggedTime: -Infinity
 --- !u!1 &2050137246
 GameObject:
   m_ObjectHideFlags: 0
