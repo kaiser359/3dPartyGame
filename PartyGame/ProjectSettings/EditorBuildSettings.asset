@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Jayden/UI Scenes/Main Menu.unity
     guid: a1f351b41b520df4c9909b6ed0294bb4
   - enabled: 0
-    path: Assets/Jayden/UI Scenes/Pause Menu.unity
+    path: Assets/Jayden/UI Scenes/Game Over.unity
     guid: d495a3bf635ab4d49a5d800832b66778
   - enabled: 0
     path: Assets/Jayden/Tag Game (test).unity
