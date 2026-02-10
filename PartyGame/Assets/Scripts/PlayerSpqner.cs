@@ -22,14 +22,16 @@ public class PlayerSpqner : MonoBehaviour
                 if (input.playerIndex == 0)
                 {
                    // input.gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Keyboard");
-                    Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    //Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                  //  managerinput.playerPrefab = playerPrefab;
                 }
                else if (input.playerIndex == 1)
                 
                     {
                        // input.gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Xbox Controller");
-                        Instantiate(playerPrefav2, new Vector3(0, 0, 0), Quaternion.identity);
-                    }
+                    //    Instantiate(playerPrefav2, new Vector3(0, 0, 0), Quaternion.identity);
+                   // managerinput.playerPrefab = playerPrefav2;
+                }
                 
 
             }
