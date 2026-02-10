@@ -7,7 +7,11 @@ public class DisableEnablePlayerMovement : MonoBehaviour
     private Tag_Movement1[] gameObjects;
     public Timer gameObjectz;
    // public Tag_Movement1[] gameObjects;
+<<<<<<< HEAD
    // public Timer[] gameObjectz;
+=======
+  //  public Timer[] gameObjectz;
+>>>>>>> b437461845668ddbc44577d1fe969e415b8a28ff
     void Start()
     {
 
