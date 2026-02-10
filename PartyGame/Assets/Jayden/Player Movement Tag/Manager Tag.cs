@@ -9,7 +9,7 @@ public class ManagerTag : MonoBehaviour
     public SpawnPoints[] sp;
     private Random rand = new Random();
     // players
-    public List<Tag_Movement> tmLi;
+    public List<Tag_Movement1> tmLi;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +31,6 @@ public class ManagerTag : MonoBehaviour
 
     public void Join(PlayerInput player)
     {
-        tmLi.Add(player.GetComponent<Tag_Movement>());
+        tmLi.Add(player.GetComponent<Tag_Movement1>());
     }
 }
