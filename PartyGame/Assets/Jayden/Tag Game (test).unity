@@ -1445,6 +1445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerinput: {fileID: 1740730399}
+  playerPrefab: {fileID: 0}
+  playerPrefav2: {fileID: 0}
 --- !u!114 &1740730399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,7 +1620,7 @@ GameObject:
   - component: {fileID: 1919829584}
   - component: {fileID: 1919829583}
   m_Layer: 5
-  m_Name: Instructions (Canvas)
+  m_Name: 3...2...1...Go!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2051,11 +2053,16 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   groundCheckRadius: 0.2
   groundLayer:
-    serializedVersion: 2
     m_Bits: 0
+  move: {x: 0, y: 0, z: 0}
+  sideInput: 0
+  forwardInput: 0
   taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
   runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
   obj: {fileID: 1024364902}
+  canDash: 1
+  isDashing: 0
+  isGrounded: 0
   postTagImmunity: 0.5
   lastTaggedTime: -Infinity
 --- !u!1 &2050137246

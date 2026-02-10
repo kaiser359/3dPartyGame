@@ -1609,12 +1609,12 @@ GameObject:
   - component: {fileID: 3361126285262993639}
   - component: {fileID: 2903173767901102382}
   - component: {fileID: 192931596410158577}
-  - component: {fileID: 4351580097082699417}
   - component: {fileID: 283897082881567006}
   - component: {fileID: 3095231414268705203}
+  - component: {fileID: 4878463903999332494}
   - component: {fileID: 8520013136864450830}
   m_Layer: 6
-  m_Name: Tag_player 1 1 1 1
+  m_Name: 'Tag_player '
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1692,38 +1692,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4351580097082699417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152012939197904227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183b6e9b607044d4d914e68a0248e58d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 3095231414268705203}
-  tf: {fileID: 2331725732116372830}
-  acceleration: 40
-  topSpeed: 6
-  isTagger: 0
-  taggerSpeedMultiplier: 1.2
-  dashForce: 20
-  dashDuration: 1
-  dashCooldown: 1
-  jumpForce: 8
-  groundCheck: {fileID: 2549746324867845402}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
-  runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
-  obj: {fileID: 2967797469481930131}
-  postTagImmunity: 0.5
-  lastTaggedTime: -Infinity
 --- !u!136 &283897082881567006
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1774,6 +1742,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4878463903999332494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152012939197904227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c250745663631f84f8fd6104fdc4dc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3095231414268705203}
+  tf: {fileID: 2331725732116372830}
+  acceleration: 10
+  topSpeed: 5
+  isTagger: 0
+  taggerSpeedMultiplier: 1.2
+  dashForce: 10
+  dashDuration: 0.15
+  dashCooldown: 1
+  jumpForce: 5
+  groundCheck: {fileID: 2549746324867845402}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  taggerMaterial: {fileID: 2100000, guid: 8c22a77808e3b0349845b9d594333262, type: 2}
+  runnerMaterial: {fileID: 2100000, guid: f62b29f8c576e2447847c66ddf5154cb, type: 2}
+  obj: {fileID: 2967797469481930131}
+  postTagImmunity: 0.5
+  lastTaggedTime: -Infinity
 --- !u!114 &8520013136864450830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,8 +1801,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4351580097082699417}
-        m_TargetAssemblyTypeName: Tag_Movement, Assembly-CSharp
+      - m_Target: {fileID: 4878463903999332494}
+        m_TargetAssemblyTypeName: Tag_Movement1, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -1833,8 +1833,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4351580097082699417}
-        m_TargetAssemblyTypeName: Tag_Movement, Assembly-CSharp
+      - m_Target: {fileID: 4878463903999332494}
+        m_TargetAssemblyTypeName: Tag_Movement1, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -1857,8 +1857,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4351580097082699417}
-        m_TargetAssemblyTypeName: Tag_Movement, Assembly-CSharp
+      - m_Target: {fileID: 4878463903999332494}
+        m_TargetAssemblyTypeName: Tag_Movement1, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
@@ -1919,6 +1919,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 61e561cd-3f8e-4632-9580-2d1d8cbc126b
     m_ActionName: 'UI/Pause[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40446eca-6a47-46d2-904d-413c5d06c45a
+    m_ActionName: 'Player/Any[/Keyboard/anyKey,/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
