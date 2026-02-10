@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     
    public void Start()
     {
-        Time.timeScale = 0f;
+        
     }   
 
 
@@ -27,7 +27,11 @@ public class Timer : MonoBehaviour
             remainingTime = 0;
             //GameOver();
             timerText.color = Color.red;
-            DisableEnablePlayerMovement.instance.DisablePlayerMovement();
+            
+            if (remainingTime == 0)
+            {
+                DisableEnablePlayerMovement.instance.DisablePlayerMovement();
+            }
         }
 
 
