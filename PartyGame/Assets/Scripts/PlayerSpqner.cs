@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerSpqner : MonoBehaviour
 {
     public PlayerInputManager managerinput; 
-    public GameObject playerPrefab;
-    public GameObject playerPrefav2;
+    //public GameObject playerPrefab;
+    //public GameObject playerPrefav2;
 
 
 
@@ -24,22 +24,22 @@ public class PlayerSpqner : MonoBehaviour
                 {
                    // input.gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Keyboard");
                     //Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                    managerinput.playerPrefab = playerPrefav2;
+                  //  managerinput.playerPrefab = playerPrefav2;
                 }
                else if (input.playerIndex == 1)
                 
                     {
                        // input.gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Xbox Controller");
                     //    Instantiate(playerPrefav2, new Vector3(0, 0, 0), Quaternion.identity);
-                    managerinput.playerPrefab = playerPrefab;
+                    //managerinput.playerPrefab = playerPrefab;
                 }
                 else if (input.playerIndex == 2)
                 {
-                    managerinput.playerPrefab = playerPrefav2;
+                    //managerinput.playerPrefab = playerPrefav2;
                 }
                 else
                 {
-                    managerinput.playerPrefab = playerPrefab;
+                    //managerinput.playerPrefab = playerPrefab;
                 }
 
 

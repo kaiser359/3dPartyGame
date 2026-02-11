@@ -115,6 +115,7 @@ public class SitOnchairTogetReady : MonoBehaviour
         else
         {
             Debug.Log("chair 2 movement script not null");
+
         }
         if (chairs[2].ready == true & chairs[2].movementScript != null)
             chairs[2].movementScript.enabled = false;

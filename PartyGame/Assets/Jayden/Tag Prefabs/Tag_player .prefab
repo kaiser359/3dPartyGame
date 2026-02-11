@@ -1756,13 +1756,13 @@ MonoBehaviour:
   rb: {fileID: 3095231414268705203}
   tf: {fileID: 2331725732116372830}
   acceleration: 40
-  topSpeed: 5
+  topSpeed: 15
   isTagger: 0
   taggerSpeedMultiplier: 1.2
   dashForce: 10
   dashDuration: 0.15
   dashCooldown: 1
-  jumpForce: 5
+  jumpForce: 10
   groundCheck: {fileID: 2549746324867845402}
   groundCheckRadius: 0.2
   groundLayer:

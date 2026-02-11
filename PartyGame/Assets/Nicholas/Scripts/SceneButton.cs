@@ -9,7 +9,7 @@ public class SceneButton : MonoBehaviour
     {
         if (sceneName == "Tag")
         {
-            SceneManager.LoadScene("Tag_Map_1");
+            SceneManager.LoadScene("Tag Game (test)");
         }
         else if (sceneName == "Maze") {
             SceneManager.LoadScene("Maze");
