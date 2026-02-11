@@ -1051,6 +1051,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1d3742a9-a752-4bb5-bf2c-ef75da8a54bc
     m_ActionName: 'Player/QuickQuit[/XInputControllerWindows/select,/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8251066474691858884}
+        m_TargetAssemblyTypeName: TabController, Assembly-CSharp
+        m_MethodName: MenuRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12ee2ef3-6685-4a87-8e30-a1a9988022a3
+    m_ActionName: 'Player/Menu Left[/XInputControllerWindows1/leftShoulder]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8251066474691858884}
+        m_TargetAssemblyTypeName: TabController, Assembly-CSharp
+        m_MethodName: MenuLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6a313c04-8489-4904-a377-7fb3dbd44b48
+    m_ActionName: 'Player/menu Right[/XInputControllerWindows1/rightShoulder]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1403,6 +1435,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5605974825481722648}
     m_Modifications:
+    - target: {fileID: 1105731181081760792, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1437,15 +1473,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1457,7 +1493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14772
+      value: 14695
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1481,7 +1517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 874
+      value: 2194
       objectReference: {fileID: 0}
     - target: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1499,6 +1535,26 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1770663089346935189, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_text
+      value: OPEN MENU
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770663089346935189, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_fontSize
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770663089346935189, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_margin.w
+      value: -181.9747
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770663089346935189, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_margin.z
+      value: -102.08365
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770663089346935189, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 124
+      objectReference: {fileID: 0}
     - target: {fileID: 3437921484834505423, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -1131
@@ -1506,6 +1562,11 @@ PrefabInstance:
     - target: {fileID: 3437921484834505423, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 796
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195298901470054388, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+      propertyPath: m_text
+      value: "TO QUIT\n\nON CONTROLLER: MINUS BUTTON \n(NEAREST TO LEFT JOY STICK)\n\nSWITCH
+        TABS\nLB BUTTON/ LR BUTTON\n\nNOTE MUST HAVE MENU OPEN TO QUIT\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4493173533293708604, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
       propertyPath: m_text
@@ -1536,6 +1597,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1685629901607193380, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
   m_PrefabInstance: {fileID: 1405802917145516286}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8251066474691858884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6990650331240466746, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
+  m_PrefabInstance: {fileID: 1405802917145516286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7077e47f69361f4499892ea1b2e46a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9073025472243560041 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7956654199529240215, guid: 262c8703883b16a468fa77b3bab6bb42, type: 3}
