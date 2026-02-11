@@ -9,7 +9,7 @@ public class DisableEnablePlayerMovement : MonoBehaviour
     public WinStatement winStatement;
     private Tag_Movement1[] gameObjects;
     public Timer gameObjectz;
-    //for player one use winstatement.player1score(-2)
+   
     void Start()
     {
 
