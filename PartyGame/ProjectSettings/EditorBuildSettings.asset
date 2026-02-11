@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Ed/musical chairs.unity
-    guid: 26ed922bc9488b545a708720e24a94d8
+    path: Assets/Scenes/Menu.unity
+    guid: 9ceac357f77887d46978b0053641ae65
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/ed/musical chairs.unity
+    guid: 26ed922bc9488b545a708720e24a94d8
+  - enabled: 0
     path: Assets/Jayden/UI Scenes/Main Menu.unity
     guid: a1f351b41b520df4c9909b6ed0294bb4
   - enabled: 0
