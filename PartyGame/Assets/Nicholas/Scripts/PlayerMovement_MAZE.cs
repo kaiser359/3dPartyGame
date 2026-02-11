@@ -1,6 +1,7 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 using Random = System.Random;
 
 
@@ -15,7 +16,7 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public Animator anim;
 
 
-    [Header("Player Settings")]
+	[Header("Player Settings")]
     public float acceleration;
     public float topSpeed;
 
