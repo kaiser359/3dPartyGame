@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ExitGame : MonoBehaviour
 {
-    public void ExitProgram()
+    public void ChangeToVoteScene()
     {
-        Debug.Log("goodbye");
+        Debug.Log("Goodbye");
         Application.Quit();
     }
+
 }

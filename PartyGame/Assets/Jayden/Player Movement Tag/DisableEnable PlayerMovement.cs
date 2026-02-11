@@ -4,8 +4,14 @@ public class DisableEnablePlayerMovement : MonoBehaviour
 {
     public static DisableEnablePlayerMovement instance;
 
-    public Tag_Movement[] gameObjects;
-    public Timer[] gameObjectz;
+    private Tag_Movement1[] gameObjects;
+    public Timer gameObjectz;
+   // public Tag_Movement1[] gameObjects;
+<<<<<<< HEAD
+   // public Timer[] gameObjectz;
+=======
+  //  public Timer[] gameObjectz;
+>>>>>>> b437461845668ddbc44577d1fe969e415b8a28ff
     void Start()
     {
 
@@ -32,8 +38,8 @@ public class DisableEnablePlayerMovement : MonoBehaviour
     }
     public void DisablePlayerMovement()
     {
-        gameObjects = FindObjectsByType<Tag_Movement>(FindObjectsSortMode.None);
-        foreach (Tag_Movement player in gameObjects)
+        gameObjects = FindObjectsByType<Tag_Movement1>(FindObjectsSortMode.None);
+        foreach (Tag_Movement1 player in gameObjects)
         {
             player.enabled = false;
         }
@@ -41,8 +47,8 @@ public class DisableEnablePlayerMovement : MonoBehaviour
 
     public void EnablePlayerMovement()
     {
-        gameObjects = FindObjectsByType<Tag_Movement>(FindObjectsSortMode.None);
-        foreach (Tag_Movement player in gameObjects)
+        gameObjects = FindObjectsByType<Tag_Movement1>(FindObjectsSortMode.None);
+        foreach (Tag_Movement1 player in gameObjects)
         {
             player.enabled = true;
         }

@@ -313,10 +313,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boo: {fileID: 0}
   lastMoveDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
+  moveSpeed: 18
   mouseSensitivity: 1
-  gamepadSensitivity: 3
-  mouseScale: 1
+  gamepadSensitivity: 100
+  mouseScale: 3
   playerBody: {fileID: 8558247825053306455}
   cameraTransform: {fileID: 4981086841643255727}
 --- !u!114 &4320491291478646856
@@ -354,10 +354,10 @@ MonoBehaviour:
   - Archery
   - musical chairs
   - Tag Game (test)
-  - Hammer Fight
-  - Catch the Duende
   sceneIcons:
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -1546141102, guid: f527ce770e65345408ba8bf71fdc99ba, type: 3}
+  - {fileID: -449080269, guid: 55f7741644b480849bcf8fca04a94b1a, type: 3}
+  - {fileID: 1344742550, guid: 80b34c65cd57d9c4c9a7d543619fb6ce, type: 3}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   voteDuration: 20
   autoLoadWinningScene: 1
@@ -930,7 +930,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -7730075261853647636, guid: 5d690fa8399051b47ab44290decf1761, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d690fa8399051b47ab44290decf1761, type: 3}

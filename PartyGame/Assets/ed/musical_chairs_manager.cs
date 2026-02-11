@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using System.Linq;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class musical_chairs_manager : MonoBehaviour
 {
 
@@ -27,6 +28,8 @@ public class musical_chairs_manager : MonoBehaviour
     public List<GameObject> players = new List<GameObject>();
     public List<GameObject> chairs = new List<GameObject>();
     public PlayerInputManager inputManager;
+
+    public WinStatement winStatement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +76,7 @@ public class musical_chairs_manager : MonoBehaviour
         }
         StartCoroutine(tutorial());
     }
+
 
     public IEnumerator tutorial()
     {
@@ -182,8 +186,8 @@ public class musical_chairs_manager : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < random_time)
         {
-            duel_spot1.transform.position += new Vector3(0, 0, Time.deltaTime/10);
-            duel_spot2.transform.position += new Vector3(0, 0, -Time.deltaTime/10);
+            duel_spot1.transform.position += new Vector3(0, 0, Time.deltaTime / 10);
+            duel_spot2.transform.position += new Vector3(0, 0, -Time.deltaTime / 10);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -214,7 +218,7 @@ public class musical_chairs_manager : MonoBehaviour
         lightbulb.speedz += 0.4f;
         lightbulb.min_intense -= 8f;
         lightbulb.max_intense += 8f;
-}
+    }
 
     public IEnumerator shoot_phase(Bot_movement suriving_dueler)
     {
@@ -233,6 +237,12 @@ public class musical_chairs_manager : MonoBehaviour
             lightbulb.lightson();
             yield return new WaitForSeconds(3f);
             suriving_dueler.gun.SetActive(false);
+            bool did_someone_win = FindObjectsByType<Bot_movement>(FindObjectsSortMode.None).Count(item => item.alive) == 1;
+            if (did_someone_win == true)
+            {
+                StartCoroutine(end());
+                yield break;
+            }
             int randomchair = Random.Range(0, chairs.Count);
             GameObject chairremove = chairs[randomchair];
             chairs.RemoveAt(randomchair);
@@ -279,5 +289,32 @@ public class musical_chairs_manager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(round());
         }
+    }
+
+    public IEnumerator end()
+    {
+        var winner = FindObjectsByType<Bot_movement>(FindObjectsSortMode.None).FirstOrDefault(item => item.alive);
+        winStatement.gameObject.SetActive(true);
+
+        int winnerIndex = winner.GetComponent<PlayerInput>().playerIndex;
+
+        if (winner.GetComponent<player_movement>() != null && winnerIndex == 0)
+        {
+            winStatement.playerScore(5);
+        }
+        else if (winner.GetComponent<player_movement>() != null && winnerIndex == 1)
+        {
+            winStatement.player2Score(5);
+        }
+        else if (winner.GetComponent<player_movement>() != null && winnerIndex == 2)
+        {
+            winStatement.player3Score(5);
+        }
+        else if (winner.GetComponent<player_movement>() != null && winnerIndex == 3)
+        {
+            winStatement.player4Score(5);
+        }
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("SampleScene");
     }
 }

@@ -6,12 +6,12 @@ public class RunnerTime : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     public float remainingTime;
 
-    public Tag_Movement[] gameObjects;
+    public Tag_Movement1[] gameObjects;
     public Chance[] chances;
 
     void Update()
     {
-        if (!GetComponentInParent<Tag_Movement>().isTagger)
+        if (!GetComponentInParent<Tag_Movement1>().isTagger)
         {
             remainingTime += Time.deltaTime;
         }
