@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 using Random = System.Random;
@@ -13,7 +15,9 @@ public class Mazecontroller : MonoBehaviour
     private Random rand = new Random();
     // players
     public List<PlayerMovement_MAZE> pmM;
-    public enum Placement
+    // UI
+	public TextMeshProUGUI timerText;
+	public enum Placement
     {
         First,
         Second,
@@ -21,9 +25,11 @@ public class Mazecontroller : MonoBehaviour
         Fourth
     }
     private Placement place;
+    private float elapsedTime;
 
     private void Start()
     {
+        elapsedTime = 91f;
         place = Placement.First;
         // loop for placing players in map at random*
         for (int i = 0; i < pmM.Count; i++)
@@ -46,6 +52,14 @@ public class Mazecontroller : MonoBehaviour
             sp[i].taken = false;
         }
     }
+    private void Update()
+    {
+        elapsedTime -= Time.deltaTime;
+        if (elapsedTime < 0f) {
+			SceneManager.LoadScene("SampleScene");
+		}
+		DisplayTime(elapsedTime);
+	}
     public void Join(PlayerInput player)
     {
         pmM.Add(player.GetComponent<PlayerMovement_MAZE>());
@@ -78,5 +92,14 @@ public class Mazecontroller : MonoBehaviour
             }
         }
     }
+
+	private void DisplayTime(float timeToDisplay)
+	{
+		//calculating minutes and seconds
+		float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+		float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+		timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+	}
 }
 
