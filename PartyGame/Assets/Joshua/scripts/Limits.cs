@@ -14,6 +14,7 @@ public class Limits : MonoBehaviour
 
     void Start()
     {
+        
         remainingTime = Mathf.Max(0f, startTimeSeconds);
 
         

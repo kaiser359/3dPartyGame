@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1384298488476977469}
   - component: {fileID: 4013000408945088048}
   - component: {fileID: 4320491291478646856}
-  - component: {fileID: 3696228810268680264}
   m_Layer: 0
   m_Name: Capsule 1
   m_TagString: Untagged
@@ -267,6 +266,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 40446eca-6a47-46d2-904d-413c5d06c45a
     m_ActionName: 'Player/Any[/Keyboard/anyKey,/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast,/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest,/XInputControllerWindows/dpad/down,/XInputControllerWindows1/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows1/dpad/left,/XInputControllerWindows/dpad/right,/XInputControllerWindows1/dpad/right,/XInputControllerWindows/dpad/up,/XInputControllerWindows1/dpad/up,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder,/XInputControllerWindows/leftStick/down,/XInputControllerWindows1/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows1/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows1/leftStick/right,/XInputControllerWindows/leftStick/up,/XInputControllerWindows1/leftStick/up,/XInputControllerWindows/leftStickPress,/XInputControllerWindows1/leftStickPress,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/XInputControllerWindows/rightShoulder,/XInputControllerWindows1/rightShoulder,/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/XInputControllerWindows/select,/XInputControllerWindows1/select,/XInputControllerWindows/start,/XInputControllerWindows1/start,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d3742a9-a752-4bb5-bf2c-ef75da8a54bc
+    m_ActionName: 'Player/QuickQuit[/XInputControllerWindows1/select,/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -317,6 +320,7 @@ MonoBehaviour:
   mouseSensitivity: 1
   gamepadSensitivity: 100
   mouseScale: 1
+  animator: {fileID: 2507096224893370905}
   playerBody: {fileID: 8558247825053306455}
   cameraTransform: {fileID: 4981086841643255727}
 --- !u!114 &4320491291478646856
@@ -334,33 +338,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &3696228810268680264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376552167769891380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5abb8934ae6b0e645bd886cfd85af4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 9062586458942722822, guid: a25786dc9b793f948a233fc35b333afe, type: 3}
-  cardsParent: {fileID: 3149589671389055990}
-  hai: {fileID: 6834690593767581227}
-  sceneNames:
-  - Maze
-  - Archery
-  - musical chairs
-  - Tag Game (test)
-  - Hammer Fight
-  - Catch the Duende
-  sceneIcons:
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  voteDuration: 20
-  autoLoadWinningScene: 1
 --- !u!1 &4860731848438075333
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,10 +901,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2507096224893370905}
   m_SourcePrefab: {fileID: 100100000, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
 --- !u!4 &3924271368847354215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
   m_PrefabInstance: {fileID: 3602714198835760780}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4412965407310328797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
+  m_PrefabInstance: {fileID: 3602714198835760780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2507096224893370905
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412965407310328797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ba084f9ed20f0942ac89c543506a7e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

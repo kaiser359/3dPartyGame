@@ -12,7 +12,7 @@ public class LobbyMovement : MonoBehaviour
     [SerializeField] float mouseSensitivity = 1f;
     [SerializeField] float gamepadSensitivity = 2f;
     [SerializeField] float mouseScale = 0.02f; 
-
+    public Animator animator;
     public Transform playerBody;      
     public Transform cameraTransform;
 
@@ -48,6 +48,7 @@ public class LobbyMovement : MonoBehaviour
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
+        Time.timeScale = 1;
     }
     void Update()
     {
@@ -68,11 +69,17 @@ public class LobbyMovement : MonoBehaviour
             playerBody.Rotate(Vector3.up * yaw);
         if (_movement2 != Vector2.zero)
         {
+          
             Vector3 localMove = new Vector3(_movement2.x, 0f, _movement2.y);
             Vector3 worldMove = playerBody.TransformDirection(localMove);
             transform.position += worldMove * (moveSpeed * Time.deltaTime);
 
             lastMoveDirection = worldMove.normalized;
+            
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
     }
     public void OnJumpPerformed(InputAction.CallbackContext ctx)
@@ -82,6 +89,7 @@ public class LobbyMovement : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext ctx)
     {
+        animator.SetBool("moving", true);
         Vector2 input = ctx.ReadValue<Vector2>();
         _movement2 = input;
         if (input != Vector2.zero)

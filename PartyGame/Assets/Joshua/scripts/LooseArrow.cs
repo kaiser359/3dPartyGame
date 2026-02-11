@@ -24,11 +24,12 @@ public class LooseArrow : MonoBehaviour
 
     public PlayerInput playerInput;
 
-    private static bool pointsAwarded = false;
+    public static bool pointsAwarded = false;
 
     public void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        pointsAwarded = false;
     }
     public void loosePrep(InputAction.CallbackContext context)
     {
