@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1384298488476977469}
   - component: {fileID: 4013000408945088048}
   - component: {fileID: 4320491291478646856}
-  - component: {fileID: 3696228810268680264}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -267,6 +266,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 40446eca-6a47-46d2-904d-413c5d06c45a
     m_ActionName: 'Player/Any[/Keyboard/anyKey,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d3742a9-a752-4bb5-bf2c-ef75da8a54bc
+    m_ActionName: 'Player/QuickQuit[/XInputControllerWindows/select,/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -335,33 +338,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &3696228810268680264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376552167769891380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5abb8934ae6b0e645bd886cfd85af4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 9062586458942722822, guid: a25786dc9b793f948a233fc35b333afe, type: 3}
-  cardsParent: {fileID: 3149589671389055990}
-  hai: {fileID: 6834690593767581227}
-  sceneNames:
-  - Maze
-  - Archery
-  - musical chairs
-  - Tag Game (test)
-  sceneIcons:
-  - {fileID: -1546141102, guid: f527ce770e65345408ba8bf71fdc99ba, type: 3}
-  - {fileID: -449080269, guid: 55f7741644b480849bcf8fca04a94b1a, type: 3}
-  - {fileID: 1344742550, guid: 80b34c65cd57d9c4c9a7d543619fb6ce, type: 3}
-  - {fileID: 1344742550, guid: 80b34c65cd57d9c4c9a7d543619fb6ce, type: 3}
-  voteDuration: 20
-  autoLoadWinningScene: 1
 --- !u!1 &4860731848438075333
 GameObject:
   m_ObjectHideFlags: 0
