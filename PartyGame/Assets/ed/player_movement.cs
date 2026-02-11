@@ -29,6 +29,8 @@ public class player_movement : MonoBehaviour
     public GameObject player_model;
 
     public GameObject pivoty;
+
+    public Animator anim;
     private void FixedUpdate()
     {
         if (forwardInput == Mathf.Abs(1) && sideInput == Mathf.Abs(1))
@@ -47,8 +49,12 @@ public class player_movement : MonoBehaviour
             if (GetComponent<Bot_movement>().alive)
             {
                 player_model.transform.forward = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-                print("totally moving");
+                anim.SetBool("moving", true);
             }
+        }
+        else
+        {
+            anim.SetBool("moving", true);
         }
     }
 

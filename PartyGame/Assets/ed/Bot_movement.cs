@@ -20,6 +20,8 @@ public class Bot_movement : MonoBehaviour
     public GameObject chair;
 
     public Rigidbody rb;
+
+    public Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,18 +53,21 @@ public class Bot_movement : MonoBehaviour
                     }
                 }
             }
-            if (!is_sitting && agent.velocity.normalized != new Vector3(0, 0, 0))
+            if (!is_sitting || agent.velocity.normalized != new Vector3(0, 0, 0))
             {
                 player_model.transform.forward = agent.velocity.normalized;
+                if (GetComponent<player_movement>() == null)
+                {
+                    anim.SetBool("moving", true);
+                }
+                else
+                {
+                    if (GetComponent<player_movement>() == null)
+                    {
+                        anim.SetBool("moving", false);
+                    }
+                }
             }
-            //Vector3 velocity = Vector3.ClampMagnitude(new(rb.linearVelocity.x, 0, rb.linearVelocity.z), 5);
-
-            //Quaternion targetRotation = velocity == Vector3.zero ? transform.
-            //rotation : Quaternion.LookRotation(velocity.normalized, Vector3.up);
-            //if (velocity != Vector3.zero)
-            //{
-            //    player_model.transform.rotation = Quaternion.RotateTowards(player_model.transform.rotation, targetRotation, Time.deltaTime * 400);
-            //}
         }
     }
 
