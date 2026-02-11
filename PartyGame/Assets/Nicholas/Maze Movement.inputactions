@@ -15,6 +15,42 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "menu Right",
+                    "type": "Button",
+                    "id": "e6899b24-14cf-4c6c-bff2-cda17fa26587",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu Left",
+                    "type": "Button",
+                    "id": "f1f60eb7-64c2-44b9-acb0-ab6d4e7572c9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "toggle",
+                    "type": "Button",
+                    "id": "ab2afc6e-e73d-4019-92c2-7b728f0e3e0c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuickQuit",
+                    "type": "Button",
+                    "id": "144f554e-1089-481f-a8f8-e4df44484811",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Exit",
                     "type": "Button",
                     "id": "a893593b-2901-4b75-b9d0-a7a02664b0f1",
@@ -97,6 +133,72 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65d139ff-9038-45f1-8926-129c82cbc67d",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad;Gamepad",
+                    "action": "menu Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5c55db7-a737-480f-bc37-9c866647b7ee",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad;Gamepad",
+                    "action": "Menu Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2310c538-a6b2-40d3-9b41-7178838b5dcc",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad;Gamepad",
+                    "action": "toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e79c141-deee-464b-8325-49c4964987c6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse;Keyboard",
+                    "action": "toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5036611-4b8d-4d9c-8c15-bf883c90745c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad;Gamepad",
+                    "action": "QuickQuit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "910bb453-3f75-4e8b-bdeb-ce208db7f2a4",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse;Keyboard",
+                    "action": "QuickQuit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
