@@ -48,6 +48,7 @@ public class LobbyMovement : MonoBehaviour
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
+        Time.timeScale = 1;
     }
     void Update()
     {
@@ -73,6 +74,7 @@ public class LobbyMovement : MonoBehaviour
             transform.position += worldMove * (moveSpeed * Time.deltaTime);
 
             lastMoveDirection = worldMove.normalized;
+            
         }
     }
     public void OnJumpPerformed(InputAction.CallbackContext ctx)

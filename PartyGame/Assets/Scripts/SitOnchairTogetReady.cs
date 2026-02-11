@@ -29,6 +29,7 @@ public class SitOnchairTogetReady : MonoBehaviour
     private bool _minigameStarted = false;
     private void Start()
     {
+
         for (int i = 0; i < chairs.Count; i++)
         {
             var entry = chairs[i];
@@ -38,6 +39,40 @@ public class SitOnchairTogetReady : MonoBehaviour
             if (entry.playerRb != null)
                 entry.originalConstraints = entry.playerRb.constraints;
         }
+        if (chairs[0].movementScript == null)
+        {
+            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
+
+        }
+        if (chairs[1].movementScript == null)
+        {
+            chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 1 movement script not null");
+        }
+        if (chairs[2].movementScript == null)
+        {
+            chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+
+        }
+        if (chairs[3].movementScript == null)
+        {
+            chairs[3].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
+        }
+        else
+        {
+            Debug.Log("chair 2 movement script not null");
+        }
+    }
+    private void Awake()
+    {
+  
     }
     private void OnTriggerEnter(Collider other)
     { 
@@ -90,47 +125,21 @@ public class SitOnchairTogetReady : MonoBehaviour
         int activePlayerCount = 0;
         int readyCount = 0;
 
-        if (chairs[0].movementScript == null)
-        {
-            chairs[0].movementScript = chairs[0].player.GetComponent<LobbyMovement>();
-           
-        }
+        
         if (chairs[0].ready == true & chairs[0].movementScript != null)
             chairs[0].movementScript.enabled = false;
-        if (chairs[1].movementScript == null)
-        {
-                  chairs[1].movementScript = chairs[1].player.GetComponent<LobbyMovement>();
-        }
-        else
-        { 
-        Debug.Log("chair 1 movement script not null");
-        }
+      
         if (chairs[1].ready == true & chairs[1].movementScript != null)
             chairs[1].movementScript.enabled = false;
         //third
-        if (chairs[2].movementScript == null)
-        {
-            chairs[2].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
-        }
-        else
-        {
-            Debug.Log("chair 2 movement script not null");
-
-        }
+       
         if (chairs[2].ready == true & chairs[2].movementScript != null)
             chairs[2].movementScript.enabled = false;
         else
         {
             Debug.Log("chair 2 movement script not null");
         }
-        if (chairs[3].movementScript == null)
-        {
-            chairs[3].movementScript = chairs[2].player.GetComponent<LobbyMovement>();
-        }
-        else
-        {
-            Debug.Log("chair 2 movement script not null");
-        }
+      
         if (chairs[3].ready == true & chairs[2].movementScript != null)
             chairs[3].movementScript.enabled = false;
         if (_minigameStarted) return;
