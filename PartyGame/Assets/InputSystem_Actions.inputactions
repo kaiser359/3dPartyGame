@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "QuickQuit",
+                    "type": "Button",
+                    "id": "1d3742a9-a752-4bb5-bf2c-ef75da8a54bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -99,6 +108,24 @@
                     "name": "Any",
                     "type": "Button",
                     "id": "40446eca-6a47-46d2-904d-413c5d06c45a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu Left",
+                    "type": "Button",
+                    "id": "12ee2ef3-6685-4a87-8e30-a1a9988022a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "menu Right",
+                    "type": "Button",
+                    "id": "6a313c04-8489-4904-a377-7fb3dbd44b48",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -235,6 +262,50 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2fb713e-1bc2-4726-90b5-0d234de72fbb",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad",
+                    "action": "menu Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f807a8f8-c132-4050-9f1f-2a9d00c5c5bd",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad",
+                    "action": "Menu Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07642463-0da5-404a-8499-f327772e906a",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";gamepad;Gamepad",
+                    "action": "QuickQuit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7c0be4d-a851-4f2d-b14b-d31b3eb470ee",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard mouse;Keyboard&Mouse",
+                    "action": "QuickQuit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -531,6 +602,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb5eeae2-8274-42f1-8af6-fb8fb8f1e6a7",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1294,10 +1376,21 @@
                 {
                     "name": "",
                     "id": "7c294ae8-696a-4d2d-b84e-7c5eefc549a6",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc2d9e3f-f314-45c4-9695-c39db6accc8f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false

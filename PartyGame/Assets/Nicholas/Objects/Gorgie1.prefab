@@ -195,7 +195,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4685916969889104929}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &3035896309524539332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +550,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1776310151270656504}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 698836340007427147}
   m_SourcePrefab: {fileID: 100100000, guid: 55897e1e37d432943820ce19c9718f4f, type: 3}
 --- !u!4 &8151521854179583435 stripped
 Transform:
@@ -628,6 +631,7 @@ MonoBehaviour:
   mc: {fileID: 0}
   ws: {fileID: 0}
   pi: {fileID: 1776310151270656504}
+  anim: {fileID: 698836340007427147}
   acceleration: 40
   topSpeed: 5
   done: 0
@@ -773,3 +777,25 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 9149668039906636648}
+--- !u!95 &698836340007427147
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821378888589737841}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ba084f9ed20f0942ac89c543506a7e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
