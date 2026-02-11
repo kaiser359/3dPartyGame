@@ -12,6 +12,7 @@ public class PlayerMovement_MAZE : MonoBehaviour
     public Mazecontroller mc;
     public WinStatement ws;
     public PlayerInput pi;
+    public Animator anim;
 
 
     [Header("Player Settings")]
@@ -50,7 +51,15 @@ public class PlayerMovement_MAZE : MonoBehaviour
     {
         sideInput = ctx.ReadValue<Vector2>().x;
         forwardInput = ctx.ReadValue<Vector2>().y;
-    }
+		if (forwardInput != 0)
+		{
+            anim.SetBool("moving", true);
+		}
+        else
+        {
+            anim.SetBool("moving", false);
+        }
+	}
     public void Escape(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
