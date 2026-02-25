@@ -15,6 +15,10 @@
 [Jira](https://mukilteo-team-cqya1673.atlassian.net/jira/software/projects/GG/summary?atlOrigin=eyJpIjoiMWNiMDk2NTdlNjViNGM1NzkxNGQ2NWE0MmIzZmNkZmQiLCJwIjoiaiJ9)
 [itch](https://kaiser359.itch.io/george-guys)
 
-https://itch.io/game/accept-admin/3999480/15245239
+https://itch.io/game/accept-admin/3111112/15245239
 Derek was not here
+https://itch.io/game/accept-admin/3393760/15245239
 Or was he?
+https://itch.io/game/accept-admin/3923150/15245239
+
+**https://itch.io/game/accept-admin/3906414/15245239**
